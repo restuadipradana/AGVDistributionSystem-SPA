@@ -1,0 +1,83 @@
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header">
+        <div class="form-row">
+          <div class="form-group col-md-1">
+            <label for="po" class="col-form-label">PO</label>
+          </div>
+          <div class="form-group col-md-2">
+            <input type="text" (keyup)="search()" class="form-control" id="po" name="po" [(ngModel)]="poo" placeholder="PO">
+          </div>
+          <div class="form-group col-md-1">
+            <label for="model" class="col-form-label">Model</label>
+          </div>
+          <div class="form-group col-md-2">
+            <input type="text" (keyup)="search()" class="form-control" id="model" [(ngModel)]="modelo" placeholder="Model">
+          </div>
+          <div class="form-group col-md-1">
+            <label for="cell" class="col-form-label">Line</label>
+          </div>
+          <div class="form-group col-md-2">
+            <input type="text" (keyup)="search()" class="form-control" id="line" [(ngModel)]="lineo" placeholder="Line">
+          </div>
+          <div class="form-group col-md-1">
+          </div>
+          <div class="form-group col-md-2">
+            <button type="button" class="btn btn-primary pull-right" (click)="fetchCheckedIDs()">
+              Print QR Code
+          </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div style="overflow:auto;" >
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
+            <thead>
+              <tr>
+                <th>Line</th>
+                <th>Model</th>
+                <th>Article</th>
+                <th>PO</th>
+                <th>Sequence</th>
+                <th>Qty</th>
+                <th>Preparation Status</th>
+                <th>Stitching Status</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listPOs?.length != 0">
+              <tr *ngFor="let listPO of listPOs">
+                <td>{{ listPO.line }}</td>
+                <td>{{ listPO.style_Name }}</td>
+                <td>{{ listPO.article }}</td>
+                <td>{{ listPO.mO_No }}</td>
+                <td>{{ listPO.po }}</td>
+                <td>{{ listPO.qty }}</td>
+                <td style="width:12%">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="prepCheck" > Waiting
+                    </label>
+                  </div>
+                </td>
+                <td style="width:12%">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="listPO.isStiCheck" (change)="changeSelection()" id="stiCheck" value="option2"> Delivery
+                    </label>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="listPOs?.length == 0">
+              <tr>
+                <td colspan="3" class="no-data-available">No data!</td>
+              </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
