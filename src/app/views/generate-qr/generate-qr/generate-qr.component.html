@@ -40,8 +40,8 @@
                 <th>PO</th>
                 <th>Sequence</th>
                 <th>Qty</th>
-                <th>Preparation Status</th>
-                <th>Stitching Status</th>
+                <th>Preparation Status <input type="checkbox" [(ngModel)]="isCkAllPrep" (change)="checkUncheckAll(1)" style="float: right; vertical-align: middle;"></th>
+                <th>Stitching Status <input type="checkbox" [(ngModel)]="isCkAllSti" (change)="checkUncheckAll(2)" style="float: right; vertical-align: middle;"></th>
               </tr>
             </thead>
             <tbody *ngIf="listPOs?.length != 0">
@@ -55,14 +55,14 @@
                 <td style="width:12%">
                   <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" id="prepCheck" > Waiting
+                      <input *ngIf="listPO.prepStatId == null" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isPrepCheck" (change)="changeSelection(1)" id="prepCheck" > {{ listPO.prepStat }}
                     </label>
                   </div>
                 </td>
                 <td style="width:12%">
                   <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="listPO.isStiCheck" (change)="changeSelection()" id="stiCheck" value="option2"> Delivery
+                      <input *ngIf="listPO.stiStatId == null" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isStiCheck" (change)="changeSelection(2)" id="stiCheck" > {{ listPO.stiStat }}
                     </label>
                   </div>
                 </td>

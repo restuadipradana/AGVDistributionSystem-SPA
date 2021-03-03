@@ -9,7 +9,19 @@ export const navItems: INavData[] = [
   {
     name: '2. Generate QR Code',
     url: '/generate/generate',
-    icon: 'icon-pie-chart'
+    icon: 'icon-pie-chart',
+    children: [
+      {
+        name: '2.1. Generate QR',
+        url: '/generate/generate',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: '2.2 Status',
+        url: '/generate/status',
+        icon: 'icon-puzzle'
+      }
+    ]
   },
   {
     name: '3. Scan',
@@ -49,7 +61,7 @@ export const navItems: INavData[] = [
     title: true,
     name: '---EXAMPLE---'
   },
-  
+
   {
     name: 'Dashboard',
     url: '/dashboard',

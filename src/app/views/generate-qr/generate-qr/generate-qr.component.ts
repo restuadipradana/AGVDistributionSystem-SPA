@@ -1,3 +1,4 @@
+import { GenerateQrService } from './../../../core/_services/generate-qr.service';
 import { ListPO } from './../../../core/_models/list-po';
 import { PoListService } from './../../../core/_services/po-list.service';
 import { SearchCriteriaDT } from '../../../core/_models/dtModels/datatable';
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
 import { Subject, Observable, Subscription } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { data } from 'jquery';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-generate-qr',
@@ -16,10 +18,12 @@ import { data } from 'jquery';
 })
 export class GenerateQrComponent implements OnInit {
   listPOs: ListPO[];
+  listPOx: ListPO[];
   listPO: any = {};
   poo: string;
   modelo: string;
   lineo: string;
+  packdata: any = {};
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -30,11 +34,18 @@ export class GenerateQrComponent implements OnInit {
   //persons: Person[];
   //datsx: [];
   selectedItemsList = [];
-  checkedIDs = [];
+  checkedPrepIDs: ListPO[];
+  checkedStiIDs: ListPO[];
 
-  constructor(private poListSvc: PoListService) { }
+  isCkAllPrep:boolean;
+  isCkAllSti:boolean;
+  checkedCategoryList:any;
+
+  constructor(private generateQrSvc: GenerateQrService) { }
 
   ngOnInit(): void {
+    this.isCkAllPrep = false;
+    this.isCkAllSti = false;
     console.log("ci")
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -47,15 +58,15 @@ export class GenerateQrComponent implements OnInit {
         dataTablesParameters.searchCriteria = this.searchCriteria;
         console.log(dataTablesParameters)
         console.log("dt")
-        this.poListSvc.search(dataTablesParameters)
+        this.generateQrSvc.search(dataTablesParameters)
           .subscribe(resp => {
             this.listPOs = resp.data;
+            console.log(resp);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
               data: []
             });
-            console.log(resp);
           });
       },
       columns: [
@@ -78,8 +89,9 @@ export class GenerateQrComponent implements OnInit {
     //});
     console.log("cfffffffffffffff")
     console.log(this.listPOs);
-    this.fetchSelectedItems();
-    this.fetchCheckedIDs();
+    //this.fetchSelectedItems();
+    //this.fetchCheckedIDs();
+
   }
   ngAfterViewInit(): void {
     this.dtTrigger.next();
@@ -98,37 +110,99 @@ export class GenerateQrComponent implements OnInit {
       dtInstance.destroy();
       this.dtTrigger.next();
     });
+    //this.getCheckedItemList();
+    //this.fetchSelectedStiItems();
+    //this.fetchCheckedIDs();
   }
 
   search() {
     this.rerender();
   }
 
-  changeSelection() {
-    this.fetchSelectedItems()
+  changeSelection(kind: number) {
+    switch(kind)
+    {
+      case 1:
+        this.fetchSelectedPrepItems()
+        break;
+      case 2:
+        this.fetchSelectedStiItems()
+        break;
+      default:
+        console.log("gaada data kind ck bx")
+        break;
+    }
+
   }
 
-  fetchSelectedItems() {
-    console.log("fsi");
+  fetchSelectedPrepItems() { //chk box prep
+    console.log("fsi prep");
     this.selectedItemsList = this.listPOs.filter((value, index) => {
-      console.log(value);
-      return value.IsStiCheck
+      console.log(value.isPrepCheck);
+      return value.isPrepCheck
     });
   }
 
-  fetchCheckedIDs() {
-    this.checkedIDs = []
-    this.listPOs.forEach((value, index) => {
-      console.log(value.IsStiCheck);
-      if (value.IsStiCheck) {
-        this.checkedIDs.push(value.PO);
+  fetchSelectedStiItems() { //chk box sti
+    console.log("fsi sti");
+    this.selectedItemsList = this.listPOs.filter((value, index) => {
+      console.log(value.isStiCheck);
+      return value.isStiCheck
+    });
+  }
+
+  fetchCheckedIDs() { //generate btn
+
+    this.checkedPrepIDs = []
+    this.checkedStiIDs = []
+    console.log("btn clk");
+    this.listPOs.forEach((value) => {
+      console.log(value);
+      if (value.isPrepCheck && value.prepStatId == null) {
+        this.checkedPrepIDs.push(value);
+      }
+      if (value.isStiCheck && value.stiStatId == null) {
+        this.checkedStiIDs.push(value);
       }
     });
+    this.packdata.prep = this.checkedPrepIDs;
+    this.packdata.sti = this.checkedStiIDs;
     console.log("fck");
-    console.log(this.checkedIDs);
+    console.log(this.packdata);
+    console.log("pkgdt");
+    console.log("json")
+    this.checkedCategoryList = JSON.stringify(this.packdata);
+    console.log(this.checkedCategoryList);
+
+    this.generateQrSvc.gen(this.packdata).subscribe(
+      () => {
+        console.log("sukses");
+        this.packdata = {};
+      },
+      (error) => {
+        console.log(error.error);
+      }
+    );
   }
 
+  checkUncheckAll(kind: number) { //ck all by kind; 1 = prep, 2 = sti
+    switch(kind)
+    {
+      case 1:
+        for (var i = 0; i < this.listPOs.length; i++) {
+          this.listPOs[i].isPrepCheck = this.isCkAllPrep;
+        }
+        break;
+      case 2:
+        for (var i = 0; i < this.listPOs.length; i++) {
+          this.listPOs[i].isStiCheck = this.isCkAllSti;
+        }
+        break;
+      default:
+        console.log("gaada data kind")
+        break;
+    }
 
-
-
+    //this.fetchCheckedIDs();
+  }
 }
