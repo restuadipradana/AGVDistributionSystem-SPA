@@ -3,7 +3,7 @@ import { INavData } from '@coreui/angular';
 export const navItems: INavData[] = [
   {
     name: '1. Kanban',
-    url: '/base',
+    url: '/kanban',
     icon: 'icon-pie-chart'
   },
   {
@@ -25,17 +25,17 @@ export const navItems: INavData[] = [
   },
   {
     name: '3. Scan',
-    url: '/kanban',
+    url: '/scan',
     icon: 'icon-puzzle',
     children: [
       {
         name: '3.1. Scan Ready',
-        url: '/kanban/building',
+        url: '/scan/scan-ready',
         icon: 'icon-puzzle'
       },
       {
         name: '3.2 Scan AGV',
-        url: '/kanban/line',
+        url: '/scan/scan-agv',
         icon: 'icon-puzzle'
       }
     ]

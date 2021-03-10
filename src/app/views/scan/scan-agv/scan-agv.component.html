@@ -1,0 +1,18 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <h4>3.2 Scan AGV</h4>
+    </div>
+    <div class="card-body"  style="height: 200px;">
+      <div class="col-md-5">
+        <input type="text" placeholder="Scan the barcode" (keydown.enter)="searchqr()" [(ngModel)]="scanQr" class="form-control scan-input" id="inputbarcode" name="inputbarcode" ngModel appScan required>
+        <br>
+        <div *ngFor="let alert of alertsDismiss">
+          <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="true">{{ alert.msg }}</alert>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

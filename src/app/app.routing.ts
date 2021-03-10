@@ -51,6 +51,10 @@ export const routes: Routes = [
     },
     children: [
       {
+        path: 'scan',
+        loadChildren: () => import('./views/scan/scan.module').then(m => m.ScanModule)
+      },
+      {
         path: 'generate',
         loadChildren: () => import('./views/generate-qr/generate-qr.module').then(m => m.GenerateQrModule)
       },

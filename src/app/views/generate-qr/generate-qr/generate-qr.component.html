@@ -15,10 +15,10 @@
             <input type="text" (keyup)="search()" class="form-control" id="model" [(ngModel)]="modelo" placeholder="Model">
           </div>
           <div class="form-group col-md-1">
-            <label for="cell" class="col-form-label">Line</label>
+            <label for="cell" class="col-form-label">Cell</label>
           </div>
           <div class="form-group col-md-2">
-            <input type="text" (keyup)="search()" class="form-control" id="line" [(ngModel)]="lineo" placeholder="Line">
+            <input type="text" (keyup)="search()" class="form-control" id="line" [(ngModel)]="lineo" placeholder="Cell">
           </div>
           <div class="form-group col-md-1">
           </div>
@@ -34,7 +34,7 @@
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
             <thead>
               <tr>
-                <th>Line</th>
+                <th>Cell</th>
                 <th>Model</th>
                 <th>Article</th>
                 <th>PO</th>

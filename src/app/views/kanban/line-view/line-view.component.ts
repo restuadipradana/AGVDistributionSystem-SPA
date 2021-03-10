@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-line-view',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LineViewComponent implements OnInit {
 
-  constructor() { }
+  buildingNumber:string="";
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.buildingNumber = this.route.snapshot.params['building'];
+    console.log(this.buildingNumber);
+
   }
 
 }

@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ResponseDT } from '../_models/dtModels/datatable';
-
+//------------this service is deprecated
 @Injectable({
   providedIn: 'root'
 })

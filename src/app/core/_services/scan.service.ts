@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ResponseDT } from '../_models/dtModels/datatable';
+import { environment } from './../../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ScanService {
+  baseUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
+
+  scanReady(scanQr: string){
+    console.log("Scanned: ", scanQr);
+    return this.http.get<any>(this.baseUrl + 'scan/scanready', { params:{scanQr:scanQr}})
+  }
+
+  scanDelivery(scanQr: string){
+    console.log("Scanned: ", scanQr);
+    return this.http.get<any>(this.baseUrl + 'scan/scandelivery', { params:{scanQr:scanQr}})
+  }
+
+  getStiStat(){
+    return this.http.get<any>(this.baseUrl + 'scan/getstistat-today')
+  }
+
+  getPrepStat(){
+    return this.http.get<any>(this.baseUrl + 'scan/getprepstat-today')
+  }
+
+
+}

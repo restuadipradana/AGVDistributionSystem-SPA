@@ -4,7 +4,6 @@ import { PoListService } from './../../../core/_services/po-list.service';
 import { SearchCriteriaDT } from '../../../core/_models/dtModels/datatable';
 import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Person } from './person';
 import { Router } from '@angular/router';
 import { Subject, Observable, Subscription } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
@@ -31,8 +30,6 @@ export class GenerateQrComponent implements OnInit {
   dtElement: DataTableDirective;
   searchCriteria: SearchCriteriaDT = { isPageLoad: true, filter: '', filter2: '', filter3: '' };
   //dtOptions: any = {};
-  //persons: Person[];
-  //datsx: [];
   selectedItemsList = [];
   checkedPrepIDs: ListPO[];
   checkedStiIDs: ListPO[];
@@ -82,11 +79,6 @@ export class GenerateQrComponent implements OnInit {
       order: [0, 'asc'],
       autoWidth: false
     };
-    //this.persons.forEach(x => {x.isPrep = false});
-    //this.datsx = this.persons.map( item => {
-    //item.isPrep = false
-    //  return item;
-    //});
     console.log("cfffffffffffffff")
     console.log(this.listPOs);
     //this.fetchSelectedItems();
@@ -178,11 +170,17 @@ export class GenerateQrComponent implements OnInit {
       () => {
         console.log("sukses");
         this.packdata = {};
+        //reload data w/o reset paging
+        this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.ajax.reload(null, false);
+        })
       },
       (error) => {
         console.log(error.error);
       }
     );
+
+
   }
 
   checkUncheckAll(kind: number) { //ck all by kind; 1 = prep, 2 = sti

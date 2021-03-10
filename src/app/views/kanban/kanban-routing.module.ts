@@ -11,14 +11,14 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'building',
+        path: '',
         component: BuildingViewComponent,
         data: {
           title: 'Building Kanban'
         }
       },
       {
-        path: 'line',
+        path: 'building/:building',
         component: LineViewComponent,
         data: {
           title: 'Cell Kanban'

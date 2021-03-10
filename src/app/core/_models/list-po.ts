@@ -3,7 +3,7 @@ export interface ListPO {
   line: string;
   mO_No: string;
   mO_Seq: string;
-  pO: string;
+  po: string;
   style_No: string;
   style_Name: string;
   article: string;

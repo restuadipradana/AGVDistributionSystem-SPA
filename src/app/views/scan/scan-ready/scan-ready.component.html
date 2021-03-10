@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <h4>3.1 Scan Ready</h4>
+    </div>
+    <div class="card-body" style="height: 200px;">
+      <div class="col-md-5">
+        <input type="text" placeholder="Scan the barcode" (keydown.enter)="searchqr()" [(ngModel)]="scanQr" class="form-control scan-input" id="inputbarcode" name="inputbarcode" ngModel appScan required>
+        <br>
+        <div *ngFor="let alert of alertsDismiss">
+          <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="true">{{ alert.msg }}</alert>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Preparation
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 30%;">PO - Seq</th>
+                <th style="width: 10%;">Qty</th>
+                <th style="width: 40%;">Scan Ready Date</th>
+                <th style="width: 20%;">Status</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listQrPoPrep?.length != 0">
+              <tr *ngFor="let qrPrep of listQrPoPrep">
+                <td><div *ngFor="let epo of qrPrep.pOlist">{{ epo.po }}<br></div></td>
+                <td><div *ngFor="let epo of qrPrep.pOlist">{{ epo.qty }}<br></div></td>
+                <td style="vertical-align: middle;">{{ qrPrep.scanAt  | date: "yyyy/MM/dd HH:mm" }}</td>
+                <td style="vertical-align: middle;">{{ qrPrep.status}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Stitching
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th style="width: 30%;">PO - Seq</th>
+                <th style="width: 10%;">Qty</th>
+                <th style="width: 40%;">Scan Ready Date</th>
+                <th style="width: 20%;">Status</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listQrPoSti?.length != 0">
+              <tr *ngFor="let qrSti of listQrPoSti">
+                <td><div *ngFor="let epo of qrSti.pOlist">{{ epo.po }}<br></div></td>
+                <td><div *ngFor="let epo of qrSti.pOlist">{{ epo.qty }}<br></div></td>
+                <td style="vertical-align: middle;">{{ qrSti.scanAt  | date: "yyyy/MM/dd HH:mm" }}</td>
+                <td style="vertical-align: middle;">{{ qrSti.status}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+</div>
