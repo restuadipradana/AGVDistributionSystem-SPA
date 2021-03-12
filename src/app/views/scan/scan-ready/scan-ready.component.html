@@ -35,7 +35,11 @@
                 <td><div *ngFor="let epo of qrPrep.pOlist">{{ epo.po }}<br></div></td>
                 <td><div *ngFor="let epo of qrPrep.pOlist">{{ epo.qty }}<br></div></td>
                 <td style="vertical-align: middle;">{{ qrPrep.scanAt  | date: "yyyy/MM/dd HH:mm" }}</td>
-                <td style="vertical-align: middle;">{{ qrPrep.status}} </td>
+                <td style="vertical-align: middle;">
+                  <div *ngIf="qrPrep.status == 'READY'; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock><span class="badge badge-warning">{{ qrPrep.status }}</span></ng-template>
+                  <ng-template #elseBlock><span class="badge badge-success">{{ qrPrep.status }}</span></ng-template>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -63,7 +67,11 @@
                 <td><div *ngFor="let epo of qrSti.pOlist">{{ epo.po }}<br></div></td>
                 <td><div *ngFor="let epo of qrSti.pOlist">{{ epo.qty }}<br></div></td>
                 <td style="vertical-align: middle;">{{ qrSti.scanAt  | date: "yyyy/MM/dd HH:mm" }}</td>
-                <td style="vertical-align: middle;">{{ qrSti.status}} </td>
+                <td style="vertical-align: middle;">
+                  <div *ngIf="qrSti.status == 'READY'; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock><span class="badge badge-warning">{{ qrSti.status }}</span></ng-template>
+                  <ng-template #elseBlock><span class="badge badge-success">{{ qrSti.status }}</span></ng-template>
+                </td>
               </tr>
             </tbody>
           </table>

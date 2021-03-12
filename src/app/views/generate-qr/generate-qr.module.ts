@@ -2,6 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { GenerateQrRoutingModule } from './generate-qr-routing.module';
 import { GenerateQrComponent } from './generate-qr/generate-qr.component';
@@ -14,7 +15,8 @@ import { StatusComponent } from './status/status.component';
     CommonModule,
     FormsModule,
     DataTablesModule,
-    GenerateQrRoutingModule
+    GenerateQrRoutingModule,
+    ModalModule.forRoot()
 
   ]
 })

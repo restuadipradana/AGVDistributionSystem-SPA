@@ -13,4 +13,5 @@ export interface ListQRCode {
   createAt: Date;
   updateAt: Date;
   pOlist: ListPO[];
+  cell: string;
 }

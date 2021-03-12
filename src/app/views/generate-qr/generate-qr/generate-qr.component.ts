@@ -9,6 +9,7 @@ import { Subject, Observable, Subscription } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { data } from 'jquery';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-generate-qr',
@@ -26,6 +27,7 @@ export class GenerateQrComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  @ViewChild('largeModal') public largeModal: ModalDirective;
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   searchCriteria: SearchCriteriaDT = { isPageLoad: true, filter: '', filter2: '', filter3: '' };

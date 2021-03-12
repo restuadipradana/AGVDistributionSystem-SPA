@@ -61,6 +61,7 @@ export class ScanReadyComponent implements OnInit {
     this._scanSvc.getStiStat().subscribe(
       (res: any) => {
         this.listQrPoSti = res;
+        console.log(this.listQrPoSti);
       },
       (error) => {
         console.log("Error: " , error.error.text);
@@ -73,6 +74,7 @@ export class ScanReadyComponent implements OnInit {
     this._scanSvc.getPrepStat().subscribe(
       (res: any) => {
         this.listQrPoPrep = res;
+        console.log(this.listQrPoPrep);
       },
       (error) => {
         console.log("Error: " , error.error.text);
