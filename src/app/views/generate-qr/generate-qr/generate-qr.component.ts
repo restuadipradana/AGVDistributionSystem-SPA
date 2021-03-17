@@ -87,6 +87,12 @@ export class GenerateQrComponent implements OnInit {
     //this.fetchCheckedIDs();
 
   }
+
+  clickRow(dataclicked: ListPO){
+    console.log(dataclicked.po);
+
+  }
+
   ngAfterViewInit(): void {
     this.dtTrigger.next();
     console.log(1)

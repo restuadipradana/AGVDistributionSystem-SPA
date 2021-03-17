@@ -45,7 +45,7 @@
               </tr>
             </thead>
             <tbody *ngIf="listPOs?.length != 0">
-              <tr *ngFor="let listPO of listPOs">
+              <tr *ngFor="let listPO of listPOs" (click)="clickRow(listPO)">
                 <td>{{ listPO.line }}</td>
                 <td>{{ listPO.style_Name }}</td>
                 <td>{{ listPO.article }}</td>

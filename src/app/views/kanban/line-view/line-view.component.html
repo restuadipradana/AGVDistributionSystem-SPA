@@ -4,16 +4,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center" >CELL 1</div>
-                    <div class="card text-white  deliverstat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">DELIVERY (PREP)</div>             
+                    <div *ngIf="cell1prep?.pOlist.length != null; then thenBlockP1 else elseBlockP1"></div>
+                    <ng-template #thenBlockP1>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell1prep?.status == 'DELIVERY', 'readystat': cell1prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell1prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell1prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP1>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white readystat" >
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">READY (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell1sti?.pOlist.length != null; then thenBlockS1 else elseBlockS1"></div>
+                    <ng-template #thenBlockS1>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell1sti?.status == 'DELIVERY', 'readystat': cell1sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell1sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell1sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS1>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -21,16 +36,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center">CELL 2</div>
-                    <div class="card text-white  deliverstat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">DELIVERY (PREP)</div>             
+                    <div *ngIf="cell2prep?.pOlist.length != null; then thenBlockP2 else elseBlockP2"></div>
+                    <ng-template #thenBlockP2>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell2prep?.status == 'DELIVERY', 'readystat': cell2prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell2prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell2prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP2>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white readystat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">READY (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell2sti?.pOlist.length != null; then thenBlockS2 else elseBlockS2"></div>
+                    <ng-template #thenBlockS2>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell2sti?.status == 'DELIVERY', 'readystat': cell2sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell2sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell2sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS2>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -38,16 +68,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center">CELL 3</div>
-                    <div class="card text-white    deliverstat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">DELIVERY (PREP)</div>             
+                    <div *ngIf="cell3prep?.pOlist.length != null; then thenBlockP3 else elseBlockP3"></div>
+                    <ng-template #thenBlockP3>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell3prep?.status == 'DELIVERY', 'readystat': cell3prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell3prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell3prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP3>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white   readystat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">READY (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell3sti?.pOlist.length != null; then thenBlockS3 else elseBlockS3"></div>
+                    <ng-template #thenBlockS3>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell3sti?.status == 'DELIVERY', 'readystat': cell3sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell3sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell3sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS3>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -55,12 +100,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center">CELL 4</div>
-                    <div class="card text-white   nodatastat">
-                        <div class="h5 text-center">N/A (PREP)</div>             
+                    <div *ngIf="cell4prep?.pOlist.length != null; then thenBlockP4 else elseBlockP4"></div>
+                    <ng-template #thenBlockP4>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell4prep?.status == 'DELIVERY', 'readystat': cell4prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell4prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell4prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP4>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white   nodatastat">
-                        <div class="h5 text-center">N/A (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell4sti?.pOlist.length != null; then thenBlockS4 else elseBlockS4"></div>
+                    <ng-template #thenBlockS4>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell4sti?.status == 'DELIVERY', 'readystat': cell4sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell4sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell4sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS4>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -68,16 +132,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center">CELL 5</div>
-                    <div class="card text-white    deliverstat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">DELIVERY (PREP)</div>             
+                    <div *ngIf="cell5prep?.pOlist.length != null; then thenBlockP5 else elseBlockP5"></div>
+                    <ng-template #thenBlockP5>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell5prep?.status == 'DELIVERY', 'readystat': cell5prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell5prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell5prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP5>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white  readystat">
-                        <div class="h5 text-center">A126598440#01</div>
-                        <div class="h5 text-center">A126598440#02</div>
-                        <div class="h5 text-center">READY (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell5sti?.pOlist.length != null; then thenBlockS5 else elseBlockS5"></div>
+                    <ng-template #thenBlockS5>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell5sti?.status == 'DELIVERY', 'readystat': cell5sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell5sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell5sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS5>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -85,12 +164,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center">CELL 6</div>
-                    <div class="card text-white    nodatastat">
-                        <div class="h5 text-center">N/A (PREP)</div>             
+                    <div *ngIf="cell6prep?.pOlist.length != null; then thenBlockP6 else elseBlockP6"></div>
+                    <ng-template #thenBlockP6>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell6prep?.status == 'DELIVERY', 'readystat': cell6prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell6prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell6prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP6>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white   nodatastat">
-                        <div class="h5 text-center">N/A (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell6sti?.pOlist.length != null; then thenBlockS6 else elseBlockS6"></div>
+                    <ng-template #thenBlockS6>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell6sti?.status == 'DELIVERY', 'readystat': cell6sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell6sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell6sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS6>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -98,12 +196,31 @@
             <div class="card text-white box">
                 <div class="card-body side">
                     <div class="h4 text-uppercase font-weight-bold text-center">CELL 7</div>
-                    <div class="card text-white    nodatastat">
-                        <div class="h5 text-center">N/A (PREP)</div>             
+                    <div *ngIf="cell7prep?.pOlist.length != null; then thenBlockP7 else elseBlockP7"></div>
+                    <ng-template #thenBlockP7>
+                      <div class="card text-white" [ngClass]="{'deliverstat': cell7prep?.status == 'DELIVERY', 'readystat': cell7prep?.status == 'READY'}" >
+                        <div class="h5 text-center" *ngFor="let data of cell7prep?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell7prep?.status}} (PREP)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockP7>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (PREP)</div>
                     </div>
-                    <div class="card text-white   nodatastat">
-                        <div class="h5 text-center">N/A (STI)</div>             
+                    </ng-template>
+
+                    <div *ngIf="cell7sti?.pOlist.length != null; then thenBlockS7 else elseBlockS7"></div>
+                    <ng-template #thenBlockS7>
+                      <div class="card text-white"  [ngClass]="{'deliverstat': cell7sti?.status == 'DELIVERY', 'readystat': cell7sti?.status == 'READY'}">
+                        <div class="h5 text-center" *ngFor="let data of cell7sti?.pOlist">{{data.po}}</div>
+                        <div class="h5 text-center">{{cell7sti?.status}} (STI)</div>
+                      </div>
+                    </ng-template>
+                    <ng-template #elseBlockS7>
+                      <div class="card text-white   nodatastat">
+                        <div class="h5 text-center">N/A (STI)</div>
                     </div>
+                    </ng-template>
                 </div>
             </div>
         </div>
@@ -114,17 +231,32 @@
     <div class="cell">
         <div class="card text-white box">
             <div class="card-body side">
-                <div class="h4 text-uppercase font-weight-bold text-center" >CELL 8</div>
-                <div class="card text-white    deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">A126598440#03</div>
-                    <div class="h5 text-center">DELIVERY (PREP)</div>             
-                </div>
-                <div class="card text-white   readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">READY (STI)</div>             
-                </div>
+              <div class="h4 text-uppercase font-weight-bold text-center" >CELL 8</div>
+              <div *ngIf="cell8prep?.pOlist.length != null; then thenBlockP8 else elseBlockP8"></div>
+                  <ng-template #thenBlockP8>
+                    <div class="card text-white" [ngClass]="{'deliverstat': cell8prep?.status == 'DELIVERY', 'readystat': cell8prep?.status == 'READY'}" >
+                      <div class="h5 text-center" *ngFor="let data of cell8prep?.pOlist">{{data.po}}</div>
+                      <div class="h5 text-center">{{cell8prep?.status}} (PREP)</div>
+                    </div>
+                  </ng-template>
+                  <ng-template #elseBlockP8>
+                    <div class="card text-white   nodatastat">
+                      <div class="h5 text-center">N/A (PREP)</div>
+                  </div>
+                  </ng-template>
+
+                  <div *ngIf="cell8sti?.pOlist.length != null; then thenBlockS8 else elseBlockS8"></div>
+                  <ng-template #thenBlockS8>
+                    <div class="card text-white"  [ngClass]="{'deliverstat': cell8sti?.status == 'DELIVERY', 'readystat': cell8sti?.status == 'READY'}">
+                      <div class="h5 text-center" *ngFor="let data of cell8sti?.pOlist">{{data.po}}</div>
+                      <div class="h5 text-center">{{cell8sti?.status}} (STI)</div>
+                    </div>
+                  </ng-template>
+                  <ng-template #elseBlockS8>
+                    <div class="card text-white   nodatastat">
+                      <div class="h5 text-center">N/A (STI)</div>
+                  </div>
+                  </ng-template>
             </div>
         </div>
     </div>
@@ -132,33 +264,63 @@
         <div class="card text-white box">
             <div class="card-body side">
                 <div class="h4 text-uppercase font-weight-bold text-center">CELL 9</div>
-                <div class="card text-white    deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">DELIVERY (PREP)</div>             
-                </div>
-                <div class="card text-white   readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">READY (STI)</div>             
-                </div>
+                <div *ngIf="cell9prep?.pOlist.length != null; then thenBlockP9 else elseBlockP9"></div>
+                  <ng-template #thenBlockP9>
+                    <div class="card text-white" [ngClass]="{'deliverstat': cell9prep?.status == 'DELIVERY', 'readystat': cell9prep?.status == 'READY'}" >
+                      <div class="h5 text-center" *ngFor="let data of cell9prep?.pOlist">{{data.po}}</div>
+                      <div class="h5 text-center">{{cell9prep?.status}} (PREP)</div>
+                    </div>
+                  </ng-template>
+                  <ng-template #elseBlockP9>
+                    <div class="card text-white   nodatastat">
+                      <div class="h5 text-center">N/A (PREP)</div>
+                  </div>
+                  </ng-template>
+
+                  <div *ngIf="cell9sti?.pOlist.length != null; then thenBlockS9 else elseBlockS9"></div>
+                  <ng-template #thenBlockS9>
+                    <div class="card text-white"  [ngClass]="{'deliverstat': cell9sti?.status == 'DELIVERY', 'readystat': cell9sti?.status == 'READY'}">
+                      <div class="h5 text-center" *ngFor="let data of cell9sti?.pOlist">{{data.po}}</div>
+                      <div class="h5 text-center">{{cell9sti?.status}} (STI)</div>
+                    </div>
+                  </ng-template>
+                  <ng-template #elseBlockS9>
+                    <div class="card text-white   nodatastat">
+                      <div class="h5 text-center">N/A (STI)</div>
+                  </div>
+                  </ng-template>
             </div>
         </div>
     </div>
     <div class="cell">
         <div class="card text-white box">
             <div class="card-body side">
-                <div class="h4 text-uppercase font-weight-bold text-center">CELL 10</div>
-                <div class="card text-white    deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">DELIVERY (PREP)</div>             
+              <div class="h4 text-uppercase font-weight-bold text-center">CELL 10</div>
+              <div *ngIf="cell10prep?.pOlist.length != null; then thenBlockP10 else elseBlockP10"></div>
+              <ng-template #thenBlockP10>
+                <div class="card text-white" [ngClass]="{'deliverstat': cell10prep?.status == 'DELIVERY', 'readystat': cell10prep?.status == 'READY'}" >
+                  <div class="h5 text-center" *ngFor="let data of cell10prep?.pOlist">{{data.po}}</div>
+                  <div class="h5 text-center">{{cell10prep?.status}} (PREP)</div>
                 </div>
-                <div class="card text-white   deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">DELIVERY (STI)</div>             
+              </ng-template>
+              <ng-template #elseBlockP10>
+                <div class="card text-white   nodatastat">
+                  <div class="h5 text-center">N/A (PREP)</div>
+              </div>
+              </ng-template>
+
+              <div *ngIf="cell10sti?.pOlist.length != null; then thenBlockS10 else elseBlockS10"></div>
+              <ng-template #thenBlockS10>
+                <div class="card text-white"  [ngClass]="{'deliverstat': cell10sti?.status == 'DELIVERY', 'readystat': cell10sti?.status == 'READY'}">
+                  <div class="h5 text-center" *ngFor="let data of cell10sti?.pOlist">{{data.po}}</div>
+                  <div class="h5 text-center">{{cell10sti?.status}} (STI)</div>
                 </div>
+              </ng-template>
+              <ng-template #elseBlockS10>
+                <div class="card text-white   nodatastat">
+                  <div class="h5 text-center">N/A (STI)</div>
+              </div>
+              </ng-template>
             </div>
         </div>
     </div>
@@ -166,16 +328,31 @@
         <div class="card text-white box">
             <div class="card-body side">
                 <div class="h4 text-uppercase font-weight-bold text-center">CELL 11</div>
-                <div class="card text-white    deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">DELIVERY (PREP)</div>             
+                <div *ngIf="cell11prep?.pOlist.length != null; then thenBlockP11 else elseBlockP11"></div>
+              <ng-template #thenBlockP11>
+                <div class="card text-white" [ngClass]="{'deliverstat': cell11prep?.status == 'DELIVERY', 'readystat': cell11prep?.status == 'READY'}" >
+                  <div class="h5 text-center" *ngFor="let data of cell11prep?.pOlist">{{data.po}}</div>
+                  <div class="h5 text-center">{{cell11prep?.status}} (PREP)</div>
                 </div>
-                <div class="card text-white   readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">READY (STI)</div>             
+              </ng-template>
+              <ng-template #elseBlockP11>
+                <div class="card text-white   nodatastat">
+                  <div class="h5 text-center">N/A (PREP)</div>
+              </div>
+              </ng-template>
+
+              <div *ngIf="cell11sti?.pOlist.length != null; then thenBlockS11 else elseBlockS11"></div>
+              <ng-template #thenBlockS11>
+                <div class="card text-white"  [ngClass]="{'deliverstat': cell11sti?.status == 'DELIVERY', 'readystat': cell11sti?.status == 'READY'}">
+                  <div class="h5 text-center" *ngFor="let data of cell11sti?.pOlist">{{data.po}}</div>
+                  <div class="h5 text-center">{{cell11sti?.status}} (STI)</div>
                 </div>
+              </ng-template>
+              <ng-template #elseBlockS11>
+                <div class="card text-white   nodatastat">
+                  <div class="h5 text-center">N/A (STI)</div>
+              </div>
+              </ng-template>
             </div>
         </div>
     </div>
@@ -183,16 +360,31 @@
         <div class="card text-white box">
             <div class="card-body side">
                 <div class="h4 text-uppercase font-weight-bold text-center">CELL 12</div>
-                <div class="card text-white    deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">DELIVERY (PREP)</div>             
+                <div *ngIf="cell12prep?.pOlist.length != null; then thenBlockP12 else elseBlockP12"></div>
+              <ng-template #thenBlockP12>
+                <div class="card text-white" [ngClass]="{'deliverstat': cell12prep?.status == 'DELIVERY', 'readystat': cell12prep?.status == 'READY'}" >
+                  <div class="h5 text-center" *ngFor="let data of cell12prep?.pOlist">{{data.po}}</div>
+                  <div class="h5 text-center">{{cell12prep?.status}} (PREP)</div>
                 </div>
-                <div class="card text-white   readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">READY (STI)</div>             
+              </ng-template>
+              <ng-template #elseBlockP12>
+                <div class="card text-white   nodatastat">
+                  <div class="h5 text-center">N/A (PREP)</div>
+              </div>
+              </ng-template>
+
+              <div *ngIf="cell12sti?.pOlist.length != null; then thenBlockS12 else elseBlockS12"></div>
+              <ng-template #thenBlockS12>
+                <div class="card text-white"  [ngClass]="{'deliverstat': cell12sti?.status == 'DELIVERY', 'readystat': cell12sti?.status == 'READY'}">
+                  <div class="h5 text-center" *ngFor="let data of cell12sti?.pOlist">{{data.po}}</div>
+                  <div class="h5 text-center">{{cell12sti?.status}} (STI)</div>
                 </div>
+              </ng-template>
+              <ng-template #elseBlockS12>
+                <div class="card text-white   nodatastat">
+                  <div class="h5 text-center">N/A (STI)</div>
+              </div>
+              </ng-template>
             </div>
         </div>
     </div>
@@ -200,16 +392,31 @@
         <div class="card text-white box">
             <div class="card-body side">
                 <div class="h4 text-uppercase font-weight-bold text-center">CELL 13</div>
-                <div class="card text-white    deliverstat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">DELIVERY (PREP)</div>             
+                <div *ngIf="cell13prep?.pOlist.length != null; then thenBlockP13 else elseBlockP13"></div>
+                <ng-template #thenBlockP13>
+                  <div class="card text-white" [ngClass]="{'deliverstat': cell13prep?.status == 'DELIVERY', 'readystat': cell13prep?.status == 'READY'}" >
+                    <div class="h5 text-center" *ngFor="let data of cell13prep?.pOlist">{{data.po}}</div>
+                    <div class="h5 text-center">{{cell13prep?.status}} (PREP)</div>
+                  </div>
+                </ng-template>
+                <ng-template #elseBlockP13>
+                  <div class="card text-white   nodatastat">
+                    <div class="h5 text-center">N/A (PREP)</div>
                 </div>
-                <div class="card text-white   readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">READY (STI)</div>             
+                </ng-template>
+
+                <div *ngIf="cell13sti?.pOlist.length != null; then thenBlockS13 else elseBlockS13"></div>
+                <ng-template #thenBlockS13>
+                  <div class="card text-white"  [ngClass]="{'deliverstat': cell13sti?.status == 'DELIVERY', 'readystat': cell13sti?.status == 'READY'}">
+                    <div class="h5 text-center" *ngFor="let data of cell13sti?.pOlist">{{data.po}}</div>
+                    <div class="h5 text-center">{{cell13sti?.status}} (STI)</div>
+                  </div>
+                </ng-template>
+                <ng-template #elseBlockS13>
+                  <div class="card text-white   nodatastat">
+                    <div class="h5 text-center">N/A (STI)</div>
                 </div>
+                </ng-template>
             </div>
         </div>
     </div>
@@ -217,16 +424,31 @@
         <div class="card text-white box">
             <div class="card-body side">
                 <div class="h4 text-uppercase font-weight-bold text-center">CELL 14</div>
-                <div class="card text-white    readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">READY (PREP)</div>             
+                <div *ngIf="cell14prep?.pOlist.length != null; then thenBlockP14 else elseBlockP14"></div>
+                <ng-template #thenBlockP14>
+                  <div class="card text-white" [ngClass]="{'deliverstat': cell14prep?.status == 'DELIVERY', 'readystat': cell14prep?.status == 'READY'}" >
+                    <div class="h5 text-center" *ngFor="let data of cell14prep?.pOlist">{{data.po}}</div>
+                    <div class="h5 text-center">{{cell14prep?.status}} (PREP)</div>
+                  </div>
+                </ng-template>
+                <ng-template #elseBlockP14>
+                  <div class="card text-white   nodatastat">
+                    <div class="h5 text-center">N/A (PREP)</div>
                 </div>
-                <div class="card text-white   readystat">
-                    <div class="h5 text-center">A126598440#01</div>
-                    <div class="h5 text-center">A126598440#02</div>
-                    <div class="h5 text-center">READY (STI)</div>             
+                </ng-template>
+
+                <div *ngIf="cell14sti?.pOlist.length != null; then thenBlockS14 else elseBlockS14"></div>
+                <ng-template #thenBlockS14>
+                  <div class="card text-white"  [ngClass]="{'deliverstat': cell14sti?.status == 'DELIVERY', 'readystat': cell14sti?.status == 'READY'}">
+                    <div class="h5 text-center" *ngFor="let data of cell14sti?.pOlist">{{data.po}}</div>
+                    <div class="h5 text-center">{{cell14sti?.status}} (STI)</div>
+                  </div>
+                </ng-template>
+                <ng-template #elseBlockS14>
+                  <div class="card text-white   nodatastat">
+                    <div class="h5 text-center">N/A (STI)</div>
                 </div>
+                </ng-template>
             </div>
         </div>
     </div>
