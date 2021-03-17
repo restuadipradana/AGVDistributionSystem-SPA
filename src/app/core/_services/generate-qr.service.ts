@@ -22,4 +22,13 @@ export class GenerateQrService {
     const url = this.baseUrl + 'generateqr/generate';
     return this.http.post(url, {dataTablesParam: data}, {});
   }
+
+  listPrep(dataTablesParam: any) {
+    const url = this.baseUrl + 'generateqr/prep-list';
+    return this.http.post<ResponseDT>(url, dataTablesParam, {});
+  }
+  listSti(dataTablesParam: any) {
+    const url = this.baseUrl + 'generateqr/sti-list';
+    return this.http.post<ResponseDT>(url, dataTablesParam, {});
+  }
 }

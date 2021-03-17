@@ -14,7 +14,7 @@ export class KanbanService {
   constructor(private http: HttpClient) { }
 
   getKanbanData(building: string){
-    return this.http.get<any>(this.baseUrl + 'test/getlst', { params:{building:building}})
+    return this.http.get<any>(this.baseUrl + 'kanban/cell-kanban', { params:{building:building}})
   }
 
 }

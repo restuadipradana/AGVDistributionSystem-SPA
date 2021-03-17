@@ -1,1 +1,157 @@
-<p>status works!</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12 mb-4">
+      <!-- Nav tabs -->
+      <tabset>
+        <tab heading="Preparation">
+          <div style="overflow:auto;" >
+            <table datatable [dtOptions]="dtOptions[0]" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>QRCode</th>
+                    <th>Cell</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="listPrep?.length != 0">
+                  <tr *ngFor="let data of listPrep" (click)="clickRow(data)">
+                    <td>{{ data.qrCode }}</td>
+                    <td>{{ data.cell }}</td>
+                    <td>
+                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" (click)="printModalP.show()">
+                        <i class="fa fa-print"></i>
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" (click)="deleteModalP.show()">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="listPrep?.length == 0">
+                  <tr>
+                    <td colspan="3" class="no-data-available">No data!</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </tab>
+        <tab heading="Stitching" *ngIf="flags == 'XX' ">
+          <div style="overflow:auto;" >
+            <table datatable [dtOptions]="dtOptions[1]" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>QRCode</th>
+                    <th>Cell</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="listSti?.length != 0">
+                  <tr *ngFor="let data of listSti" (click)="clickRow(data)">
+                    <td>{{ data.qrCode }}</td>
+                    <td>{{ data.cell }}</td>
+                    <td>
+                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" (click)="printModalS.show()">
+                        <i class="fa fa-print"></i>
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" (click)="deleteModalS.show()">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="listSti?.length == 0">
+                  <tr>
+                    <td colspan="3" class="no-data-available">No data!</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<div bsModal #printModalP="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Print</h4>
+        <button type="button" class="close" (click)="printModalP.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{selectedDataPrep?.qrCode}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="printModalP.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #deleteModalP="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete</h4>
+        <button type="button" class="close" (click)="deleteModalP.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{selectedDataPrep?.qrCode}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="deleteModalP.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+
+
+
+<div bsModal #printModalS="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Print</h4>
+        <button type="button" class="close" (click)="printModalS.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{selectedDataPrep?.qrCode}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="printModalS.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div bsModal #deleteModalS="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete</h4>
+        <button type="button" class="close" (click)="deleteModalS.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{selectedDataPrep?.qrCode}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="deleteModalS.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
