@@ -1,5 +1,6 @@
+import { ListQRCode } from './../../../core/_models/list-qr';
 import { ProcessStat } from './../../../core/_models/processstat';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { GenerateQrService } from './../../../core/_services/generate-qr.service';
 import { SearchCriteriaDT } from '../../../core/_models/dtModels/datatable';
 import { Subject, Observable, Subscription } from 'rxjs';
@@ -11,7 +12,7 @@ import {ModalDirective} from 'ngx-bootstrap/modal';
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.css']
 })
-export class StatusComponent implements OnInit {
+export class StatusComponent implements OnInit, AfterViewInit {
 
   dtOptions: DataTables.Settings[] = [];
   dtTrigger: Subject<any> = new Subject();
@@ -19,18 +20,18 @@ export class StatusComponent implements OnInit {
   @ViewChild('deleteModalP') public deleteModalP: ModalDirective;
   @ViewChild('printModalS') public printModalS: ModalDirective;
   @ViewChild('deleteModalS') public deleteModalS: ModalDirective;
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
+  @ViewChildren(DataTableDirective)
+  dtElements: QueryList<DataTableDirective>; //gatau biar bisa rerender multiple table
   searchCriteria: SearchCriteriaDT = { isPageLoad: true, filter: '', filter2: '', filter3: '' };
   searchCriteria1: SearchCriteriaDT = { isPageLoad: true, filter: '', filter2: '', filter3: '' };
 
-  listPrep: ProcessStat[];
-  listSti: ProcessStat[];
+  listPrep: ListQRCode[];
+  listSti: ListQRCode[];
   cellP: string;
   cellS: string;
   selectedPrepId: string;
   selectedStiId: string;
-  selectedDataPrep: ProcessStat;
+  selectedData: ProcessStat;
   flags: string = 'XX';
 
   constructor(private generateQrSvc: GenerateQrService) { }
@@ -60,8 +61,10 @@ export class StatusComponent implements OnInit {
           });
       },
       columns: [
-        { data: 'qrcode', 'orderable': false },
-        { data: 'cell', 'orderable': true }
+        { data: 'pOlist', 'orderable': false },
+        { data: 'cell', 'orderable': true },
+        { data: 'generateAt', 'orderable': false },
+        { data: 'status', 'orderable': false }
       ],
       order: [1, 'asc'],
       autoWidth: false
@@ -90,8 +93,10 @@ export class StatusComponent implements OnInit {
           });
       },
       columns: [
-        { data: 'qrcode', 'orderable': false },
-        { data: 'cell', 'orderable': true }
+        { data: 'pOlist', 'orderable': false },
+        { data: 'cell', 'orderable': true },
+        { data: 'generateAt', 'orderable': false },
+        { data: 'status', 'orderable': false }
       ],
       order: [1, 'asc'],
       autoWidth: false
@@ -106,17 +111,54 @@ export class StatusComponent implements OnInit {
   rerender(): void {
     this.searchCriteria.isPageLoad = false;
     this.searchCriteria.filter = this.cellP;
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.destroy();
-      this.dtTrigger.next();
+    this.searchCriteria1.isPageLoad = false;
+    this.searchCriteria1.filter = this.cellS;
+    this.dtElements.forEach((dtElement: DataTableDirective) => {
+      dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+      });
     });
   }
 
   clickRow(dataclicked: ProcessStat){
     console.log(dataclicked);
     this.selectedPrepId = dataclicked.id;
-    this.selectedDataPrep = dataclicked;
+    this.selectedData = dataclicked;
+  }
 
+  printData(){
+    console.log("ok");
+    this.printModalP.hide();
+  }
+
+  deleteData(kind: string, data: ListQRCode){
+    if(kind == 'P')
+    {
+      this.generateQrSvc.deleteQrPrep(data).subscribe(() => {
+        this.deleteModalP.hide();
+        this.dtElements.forEach((dtElement: DataTableDirective) => {
+          dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            dtInstance.ajax.reload(null, false);
+          });
+        });
+      }, error => {
+        console.log(error.error);
+      });
+    }
+    else if (kind == 'S')
+    {
+      this.generateQrSvc.deleteQrSti(data).subscribe(() => {
+        this.deleteModalS.hide();
+        this.dtElements.forEach((dtElement: DataTableDirective) => {
+          dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+            dtInstance.ajax.reload(null, false);
+          });
+        });
+      }, error => {
+        console.log(error.error);
+      });
+    }
   }
 
 }

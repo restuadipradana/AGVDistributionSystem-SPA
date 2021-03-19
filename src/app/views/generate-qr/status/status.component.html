@@ -8,15 +8,19 @@
             <table datatable [dtOptions]="dtOptions[0]" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
                 <thead>
                   <tr>
-                    <th>QRCode</th>
+                    <th>PO#</th>
                     <th>Cell</th>
+                    <th>Create Date</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody *ngIf="listPrep?.length != 0">
                   <tr *ngFor="let data of listPrep" (click)="clickRow(data)">
-                    <td>{{ data.qrCode }}</td>
+                    <td><div *ngFor="let epo of data.pOlist">{{ epo.po }}<br></div></td>
                     <td>{{ data.cell }}</td>
+                    <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:dd"  }}</td>
+                    <td>{{ data.status }}</td>
                     <td>
                       <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" (click)="printModalP.show()">
                         <i class="fa fa-print"></i>
@@ -35,20 +39,24 @@
             </table>
           </div>
         </tab>
-        <tab heading="Stitching" *ngIf="flags == 'XX' ">
+        <tab heading="Stitching"><!-- *ngIf="flags == 'XX' "-->
           <div style="overflow:auto;" >
             <table datatable [dtOptions]="dtOptions[1]" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
                 <thead>
                   <tr>
-                    <th>QRCode</th>
+                    <th>PO#</th>
                     <th>Cell</th>
+                    <th>Create Date</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody *ngIf="listSti?.length != 0">
                   <tr *ngFor="let data of listSti" (click)="clickRow(data)">
-                    <td>{{ data.qrCode }}</td>
+                    <td><div *ngFor="let epo of data.pOlist">{{ epo.po }}<br></div></td>
                     <td>{{ data.cell }}</td>
+                    <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:dd"  }}</td>
+                    <td>{{ data.status }}</td>
                     <td>
                       <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" (click)="printModalS.show()">
                         <i class="fa fa-print"></i>
@@ -82,18 +90,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{selectedDataPrep?.qrCode}}</p>
+        <p>{{selectedData?.qrCode}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="printModalP.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="printData()">Print</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <div bsModal #deleteModalP="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-danger" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Delete</h4>
@@ -102,11 +110,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{selectedDataPrep?.qrCode}}</p>
+        <p>Delete: {{selectedData?.qrCode}} ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="deleteModalP.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" (click)="deleteData('P', selectedData)">Delete</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -125,18 +133,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{selectedDataPrep?.qrCode}}</p>
+        <p>{{selectedData?.qrCode}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="printModalS.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Print</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <div bsModal #deleteModalS="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-danger" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Delete</h4>
@@ -145,11 +153,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{selectedDataPrep?.qrCode}}</p>
+        <p>{{selectedData?.qrCode}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="deleteModalS.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger"(click)="deleteData('S', selectedData)">Delete</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -17,4 +17,8 @@ export class KanbanService {
     return this.http.get<any>(this.baseUrl + 'kanban/cell-kanban', { params:{building:building}})
   }
 
+  getBuildingData(){
+    return this.http.get<any>(this.baseUrl + 'kanban/building-kanban')
+  }
+
 }

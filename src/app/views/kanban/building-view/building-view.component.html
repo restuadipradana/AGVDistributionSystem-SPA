@@ -1,18 +1,26 @@
 <div class="animated fadeIn">
     <div class="row">
 
-        <div class="col-md-2 col-sm-4">
+        <div class="col-md-2 col-sm-4" *ngFor="let data of allDataBuilding">
             <div class="card text-white bg-primary">
-              <div class="card-body"  (click)="showLine(1)">
-                <div class="h2 text-uppercase font-weight-bold text-center">A BUILDING</div>
+              <div class="card-body"  (click)="showLine(data.buildingNo)">
+                <div class="h2 text-uppercase font-weight-bold text-center">{{data.buildingName}}</div>
                 <hr style="height:1px;border-width:0;color:gray;background-color:rgb(224, 229, 252)">
 
+                <div class="row h4">
+                  <div class="col text-right">
+                    Prepared
+                  </div>
+                  <div class="col">
+                    {{data.prepared}}
+                  </div>
+                </div>
                 <div class="row h4">
                     <div class="col text-right">
                       Ready
                     </div>
                     <div class="col">
-                      12
+                      {{data.ready}}
                     </div>
                 </div>
                 <div class="row h4">
@@ -20,7 +28,7 @@
                       Delivery
                     </div>
                     <div class="col">
-                      6
+                      {{data.delivery}}
                     </div>
                 </div>
                 <div class="row h4">
@@ -28,7 +36,7 @@
                       Finished
                     </div>
                     <div class="col">
-                      6
+                      {{data.finished}}
                     </div>
                 </div>
 
@@ -38,46 +46,6 @@
               </div>
             </div>
         </div><!--/.col-->
-
-        <div class="col-md-2 col-sm-4">
-            <div class="card text-white bg-primary">
-              <div class="card-body" (click)="showLine(2)">
-                <div class="h2 text-uppercase font-weight-bold text-center">B BUILDING</div>
-                <hr style="height:1px;border-width:0;color:gray;background-color:rgb(224, 229, 252)">
-
-                <div class="row h4">
-                    <div class="col text-right">
-                      Ready
-                    </div>
-                    <div class="col">
-                      12
-                    </div>
-                </div>
-                <div class="row h4">
-                    <div class="col text-right">
-                      Delivery
-                    </div>
-                    <div class="col">
-                      6
-                    </div>
-                </div>
-                <div class="row h4">
-                    <div class="col text-right">
-                      Finished
-                    </div>
-                    <div class="col">
-                      6
-                    </div>
-                </div>
-
-                <div class="chart-wrapper mx-auto" style="height:20px;width:80px;">
-
-                </div>
-              </div>
-            </div>
-        </div><!--/.col-->
-
-
 
     </div><!--/.row-->
 </div>

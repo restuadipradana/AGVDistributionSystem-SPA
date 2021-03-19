@@ -1,3 +1,4 @@
+import { ListQRCode } from './../_models/list-qr';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -30,5 +31,13 @@ export class GenerateQrService {
   listSti(dataTablesParam: any) {
     const url = this.baseUrl + 'generateqr/sti-list';
     return this.http.post<ResponseDT>(url, dataTablesParam, {});
+  }
+
+  deleteQrPrep(data: ListQRCode) {
+    return this.http.post(this.baseUrl + 'generateqr/prep-delete', data);
+  }
+
+  deleteQrSti(data: ListQRCode) {
+    return this.http.post(this.baseUrl + 'generateqr/sti-delete', data);
   }
 }
