@@ -16,9 +16,8 @@ export class StatusComponent implements OnInit, AfterViewInit {
 
   dtOptions: DataTables.Settings[] = [];
   dtTrigger: Subject<any> = new Subject();
-  @ViewChild('printModalP') public printModalP: ModalDirective;
+  @ViewChild('printModal') public printModal: ModalDirective;
   @ViewChild('deleteModalP') public deleteModalP: ModalDirective;
-  @ViewChild('printModalS') public printModalS: ModalDirective;
   @ViewChild('deleteModalS') public deleteModalS: ModalDirective;
   @ViewChildren(DataTableDirective)
   dtElements: QueryList<DataTableDirective>; //gatau biar bisa rerender multiple table
@@ -31,8 +30,10 @@ export class StatusComponent implements OnInit, AfterViewInit {
   cellS: string;
   selectedPrepId: string;
   selectedStiId: string;
-  selectedData: ProcessStat;
+  selectedData: ListQRCode;
+  selectedQr: string;
   flags: string = 'XX';
+
 
   constructor(private generateQrSvc: GenerateQrService) { }
 
@@ -121,15 +122,15 @@ export class StatusComponent implements OnInit, AfterViewInit {
     });
   }
 
-  clickRow(dataclicked: ProcessStat){
+  clickRow(dataclicked: ListQRCode){
     console.log(dataclicked);
     this.selectedPrepId = dataclicked.id;
     this.selectedData = dataclicked;
   }
 
-  printData(){
-    console.log("ok");
-    this.printModalP.hide();
+  printData(dataclicked: ListQRCode){
+    console.log("ok", this.selectedData);
+    this.printModal.hide();
   }
 
   deleteData(kind: string, data: ListQRCode){
