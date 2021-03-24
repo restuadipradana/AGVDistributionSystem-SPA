@@ -94,43 +94,46 @@
         <div id="print-section">
           <!--Your html stuff that you want to print-->
           <div class="row">
-            <div class="col-sm-4"><qrcode [qrdata]="selectedData?.qrCode" [width]="256" [errorCorrectionLevel]="'M'" [margin]="1" [elementType]="'url'"></qrcode></div>
-            <div class="col-sm-4">
-
-              <table style="width:100%">
-                <thead>
-                  <tr>
-                    <th style="width: 30%;"></th>
-                    <th style="width: 70%;"></th>
-                  </tr>
-                </thead>
+            <div class="col-sm-6">
+              <table style="width: 400px;">
                 <tbody>
                   <tr>
-                    <td colspan="2" style="text-align: center;">STITCHING</td>
-                    <td></td>
+                    <td rowspan="9" style="width:30%"><qrcode [qrdata]="selectedData?.qrCode" [width]="175" [errorCorrectionLevel]="'M'" [margin]="1" [elementType]="'url'"></qrcode></td>
+                    <td colspan="2" style="width:70%">
+                    <p style="text-align:center" *ngIf="selectedData?.kind == 'STI'"><strong>STITCHING</strong></p>
+                    <p style="text-align:center" *ngIf="selectedData?.kind == 'PREP'"><strong>PREPARATION</strong></p>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Cell</td>
-                    <td>: {{selectedData?.cell}}</td>
+                    <td style="width:7.5085%">Cell</td>
+                    <td style="width:42.4346%">&nbsp;{{selectedData?.cell}}</td>
                   </tr>
                   <tr>
-                    <td>Art</td>
-                    <td>: {{selectedData?.pOlist[0].article}}</td>
+                    <td style="width:7.5085%">Article</td>
+                    <td style="width:42.4346%">&nbsp;{{selectedData?.pOlist[0].article}}</td>
                   </tr>
                   <tr>
-                    <td>PO</td>
-                    <td>: </td>
+                    <td style="width:7.5085%">PO</td>
+                    <td style="width:42.4346%"><div *ngFor="let data of selectedData?.pOlist">&nbsp;&bull; {{data.po}}<br></div></td>
                   </tr>
-                  <tr *ngFor="let data of selectedData?.pOlist">
-                    <td></td>
-                    <td>* {{data.po}}</td>
+                  <tr>
+                    <td style="width:7.5085%">Qty</td>
+                    <td style="width:42.4346%">&nbsp;{{selectedData?.totQty}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width:7.5085%">&nbsp;</td>
+                    <td style="width:42.4346%">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td style="width:7.5085%">Date</td>
+                    <td style="width:42.4346%">{{selectedData?.generateAt | date: "yyyy/MM/dd HH:mm:dd" }}</td>
                   </tr>
                 </tbody>
               </table>
 
             </div>
 
-            <div class="col-sm-4"></div>
+            <div class="col"></div>
           </div>
 
         </div>
@@ -153,19 +156,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Delete: {{selectedData?.qrCode}} ?</p>
+        <p>Delete this merged sequence? </p> <div *ngFor="let data of selectedData?.pOlist"> {{data.po}} </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="deleteModalP.hide()">Close</button>
+        <button type="button" class="btn btn-success" (click)="deleteModalP.hide()">Cancel</button>
         <button type="button" class="btn btn-danger" (click)="deleteData('P', selectedData)">Delete</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div>
-
-
-
-
 
 
 <div bsModal #deleteModalS="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -178,7 +177,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{selectedData?.qrCode}}</p>
+        <p>Delete this merged sequence? </p> <div *ngFor="let data of selectedData?.pOlist"> {{data.po}} </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="deleteModalS.hide()">Close</button>

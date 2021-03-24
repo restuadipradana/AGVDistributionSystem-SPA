@@ -3,6 +3,7 @@ import { ListCell } from './../../../core/_models/list-cell';
 import { KanbanService } from './../../../core/_services/kanban.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-line-view',
@@ -43,6 +44,8 @@ export class LineViewComponent implements OnInit {
   cell13sti: ListQRCode;
   cell14sti: ListQRCode;
 
+  intervalId: number;
+  subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -53,6 +56,14 @@ export class LineViewComponent implements OnInit {
     this.buildingNumber = this.route.snapshot.params['building'];
     this.getData(this.buildingNumber);
 
+    const source = interval(30000);
+    this.subscription = source.subscribe(val => this.getData(this.buildingNumber));
+
+  }
+
+
+  ngOnDestroy() {
+    this.subscription && this.subscription.unsubscribe();
   }
 
   getData(buildingNo: string){

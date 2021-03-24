@@ -126,6 +126,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
     console.log(dataclicked);
     this.selectedPrepId = dataclicked.id;
     this.selectedData = dataclicked;
+    this.selectedData.totQty = dataclicked.pOlist.reduce((acc, val) => acc += val.qty, 0);
   }
 
   printData(dataclicked: ListQRCode){
