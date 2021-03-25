@@ -22,7 +22,7 @@
                     <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:dd"  }}</td>
                     <td>{{ data.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" (click)="printModal.show()">
+                      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" (click)="printModal.show()">
                         <i class="fa fa-print"></i>
                       </button>
                       <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" (click)="deleteModalP.show()">
@@ -58,7 +58,7 @@
                     <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:dd"  }}</td>
                     <td>{{ data.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" (click)="printModal.show()">
+                      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" (click)="printModal.show()">
                         <i class="fa fa-print"></i>
                       </button>
                       <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" (click)="deleteModalS.show()">
@@ -95,10 +95,10 @@
           <!--Your html stuff that you want to print-->
           <div class="row">
             <div class="col-sm-6">
-              <table style="width: 400px;">
+              <table style="width: 330px; font-size: 11px;">
                 <tbody>
                   <tr>
-                    <td rowspan="9" style="width:30%"><qrcode [qrdata]="selectedData?.qrCode" [width]="175" [errorCorrectionLevel]="'M'" [margin]="1" [elementType]="'url'"></qrcode></td>
+                    <td rowspan="9" style="width:30%"><qrcode [qrdata]="selectedData?.qrCode" [width]="135" [errorCorrectionLevel]="'M'" [margin]="1" [elementType]="'url'"></qrcode></td>
                     <td colspan="2" style="width:70%">
                     <p style="text-align:center" *ngIf="selectedData?.kind == 'STI'"><strong>STITCHING</strong></p>
                     <p style="text-align:center" *ngIf="selectedData?.kind == 'PREP'"><strong>PREPARATION</strong></p>

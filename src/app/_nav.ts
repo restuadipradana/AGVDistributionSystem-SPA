@@ -42,12 +42,12 @@ export const navItems: INavData[] = [
   },
   {
     name: '4. User Management',
-    url: '/base',
+    url: '/user',
     icon: 'icon-puzzle',
     children: [
       {
         name: '4.1. Authorization',
-        url: '/base/cards',
+        url: '/user/authorization',
         icon: 'icon-puzzle'
       },
       {

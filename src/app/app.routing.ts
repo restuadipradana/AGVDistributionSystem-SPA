@@ -51,6 +51,10 @@ export const routes: Routes = [
     },
     children: [
       {
+        path: 'user',
+        loadChildren: () => import('./views/user-management/user-management.module').then(m => m.UserManagementModule)
+      },
+      {
         path: 'scan',
         loadChildren: () => import('./views/scan/scan.module').then(m => m.ScanModule)
       },
