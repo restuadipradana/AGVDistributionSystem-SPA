@@ -26,7 +26,7 @@ export class BuildingViewComponent implements OnInit {
     this._kabanSvc.getBuildingData().subscribe(
       (res: any) => {
         this.allDataBuilding = res;
-        console.log("all dt" , this.allDataBuilding);
+        //console.log("all dt" , this.allDataBuilding);
       },
       (error) => {
         console.log("Error: " , error.error);

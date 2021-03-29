@@ -1,59 +1,7 @@
 import { INavData } from '@coreui/angular';
 import { Injectable } from "@angular/core";
 
-export const navItems: INavData[] = [
-  //{
-  //  name: '1. Kanban',
-  //  url: '/kanban',
-  //  icon: 'icon-pie-chart'
-  //},
-  //{
-  //  name: '2. Generate QR Code',
-  //  url: '/generate/generate',
-  //  icon: 'icon-pie-chart',
-  //  children: [
-  //    {
-  //      name: '2.1. Generate QR',
-  //      url: '/generate/generate',
-  //      icon: 'icon-puzzle'
-  //    },
-  //    {
-  //      name: '2.2 Status',
-  //      url: '/generate/status',
-  //      icon: 'icon-puzzle'
-  //    }
-  //  ]
-  //},
-  //{
-  //  name: '3. Scan',
-  //  url: '/scan',
-  //  icon: 'icon-puzzle',
-  //  children: [
-  //    {
-  //      name: '3.1. Scan Ready',
-  //      url: '/scan/scan-ready',
-  //      icon: 'icon-puzzle'
-  //    },
-  //    {
-  //      name: '3.2 Scan AGV',
-  //      url: '/scan/scan-agv',
-  //      icon: 'icon-puzzle'
-  //    }
-  //  ]
-  //},
-  //{
-  //  name: '4. User Management',
-  //  url: '/user',
-  //  icon: 'icon-puzzle',
-  //  children: [
-  //    {
-  //      name: '4.1. Authorization',
-  //      url: '/user/authorization',
-  //      icon: 'icon-puzzle'
-  //    }
-  //  ]
-  //},
-];
+export const navItems: INavData[] = [];
 
 @Injectable({
   providedIn: "root", // <- ADD THIS
@@ -68,9 +16,17 @@ export class NavItem {
   constructor() {}
 
   getNav(user: any) {
-    if( user == null) return [];
 
     this.navItems = [];
+    if( user == null) return [
+      {
+        name: '1. Kanban',
+        url: '/kanban',
+        icon: 'icon-graph',
+      }
+    ];
+
+
     this.hasKanban = true;
     this.hasGenerateQR = false;
     this.hasScan = false;

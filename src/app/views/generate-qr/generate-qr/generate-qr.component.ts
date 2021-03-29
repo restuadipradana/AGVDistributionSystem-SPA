@@ -44,7 +44,6 @@ export class GenerateQrComponent implements OnInit {
   ngOnInit(): void {
     this.isCkAllPrep = false;
     this.isCkAllSti = false;
-    console.log("ci")
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -52,14 +51,14 @@ export class GenerateQrComponent implements OnInit {
       processing: true,
       searching: false,
       ajax: (dataTablesParameters: any, callback) => {
-        console.log("st")
+        //console.log("st")
         dataTablesParameters.searchCriteria = this.searchCriteria;
-        console.log(dataTablesParameters)
-        console.log("dt")
+        //console.log(dataTablesParameters)
+        //console.log("dt")
         this.generateQrSvc.search(dataTablesParameters)
           .subscribe(resp => {
             this.listPOs = resp.data;
-            console.log(resp);
+            //console.log(resp);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -80,15 +79,13 @@ export class GenerateQrComponent implements OnInit {
       order: [0, 'asc'],
       autoWidth: false
     };
-    console.log("cfffffffffffffff")
-    console.log(this.listPOs);
     //this.fetchSelectedItems();
     //this.fetchCheckedIDs();
 
   }
 
   clickRow(dataclicked: ListPO){
-    console.log(dataclicked.po);
+    console.log("click ", dataclicked.po);
 
   }
 
@@ -98,9 +95,9 @@ export class GenerateQrComponent implements OnInit {
   }
 
   rerender(): void {
-    console.log("sc po: ", this.poo);
-    console.log("sc model: ", this.modelo);
-    console.log("sc line: ", this.lineo);
+    //console.log("sc po: ", this.poo);
+    //console.log("sc model: ", this.modelo);
+    //console.log("sc line: ", this.lineo);
     this.searchCriteria.isPageLoad = false;
     this.searchCriteria.filter = this.poo;
     this.searchCriteria.filter2 = this.modelo;
@@ -109,9 +106,6 @@ export class GenerateQrComponent implements OnInit {
       dtInstance.destroy();
       this.dtTrigger.next();
     });
-    //this.getCheckedItemList();
-    //this.fetchSelectedStiItems();
-    //this.fetchCheckedIDs();
   }
 
   search() {
@@ -135,28 +129,27 @@ export class GenerateQrComponent implements OnInit {
   }
 
   fetchSelectedPrepItems() { //chk box prep
-    console.log("fsi prep");
+    //console.log("fsi prep");
     this.selectedItemsList = this.listPOs.filter((value, index) => {
-      console.log(value.isPrepCheck);
+      //console.log(value.isPrepCheck);
       return value.isPrepCheck
     });
   }
 
   fetchSelectedStiItems() { //chk box sti
-    console.log("fsi sti");
+    //console.log("fsi sti");
     this.selectedItemsList = this.listPOs.filter((value, index) => {
-      console.log(value.isStiCheck);
+      //console.log(value.isStiCheck);
       return value.isStiCheck
     });
   }
 
   fetchCheckedIDs() { //generate btn
 
-    this.checkedPrepIDs = []
-    this.checkedStiIDs = []
-    console.log("btn clk");
+    this.checkedPrepIDs = [];
+    this.checkedStiIDs = [];
     this.listPOs.forEach((value) => {
-      console.log(value);
+      //console.log(value);
       if (value.isPrepCheck && value.prepStatId == null) {
         this.checkedPrepIDs.push(value);
       }
@@ -166,16 +159,11 @@ export class GenerateQrComponent implements OnInit {
     });
     this.packdata.prep = this.checkedPrepIDs;
     this.packdata.sti = this.checkedStiIDs;
-    console.log("fck");
-    console.log(this.packdata);
-    console.log("pkgdt");
-    console.log("json")
     this.checkedCategoryList = JSON.stringify(this.packdata);
-    console.log(this.checkedCategoryList);
 
     this.generateQrSvc.gen(this.packdata).subscribe(
       () => {
-        console.log("sukses");
+        //console.log("sukses");
         this.packdata = {};
         //reload data w/o reset paging
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {

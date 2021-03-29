@@ -50,7 +50,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
         this.generateQrSvc.listPrep(dataTablesParameters)
           .subscribe(resp => {
             this.listPrep = resp.data;
-            console.log(resp);
+            //console.log(resp);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -116,7 +116,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
   }
 
   clickRow(dataclicked: ListQRCode){
-    console.log(dataclicked);
+    console.log("click ", dataclicked);
     this.selectedPrepId = dataclicked.id;
     this.selectedData = dataclicked;
     this.selectedData.totQty = dataclicked.pOlist.reduce((acc, val) => acc += val.qty, 0);

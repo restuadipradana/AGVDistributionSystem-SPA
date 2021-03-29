@@ -70,7 +70,7 @@ export class LineViewComponent implements OnInit {
     this._kabanSvc.getKanbanData(buildingNo).subscribe(
       (res: any) => {
         this.allDataCell = res;
-        console.log("all dt" , this.allDataCell);
+        //console.log("all dt" , this.allDataCell);
         this.splitData(this.allDataCell);
       },
       (error) => {

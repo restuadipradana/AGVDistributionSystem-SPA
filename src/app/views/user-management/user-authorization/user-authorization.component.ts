@@ -31,7 +31,7 @@ export class UserAuthorizationComponent implements OnInit {
   constructor(private _userSvc: UserService) { }
 
   ngOnInit(): void {
-    console.log("ud", this.userDetail)
+    //console.log("ud", this.userDetail)
     this.getListUser();
   }
 

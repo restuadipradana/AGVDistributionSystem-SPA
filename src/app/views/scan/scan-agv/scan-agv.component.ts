@@ -27,7 +27,7 @@ export class ScanAgvComponent implements OnInit {
       this._scanSvc.scanDelivery(this.scanQr).subscribe(
         (res: any) => {
           this.scannedQr = res;
-          console.log(this.scannedQr);
+          //console.log(this.scannedQr);
           this.showAlert( "OK!" , 1);
         },
         (error) => {
