@@ -93,6 +93,11 @@
       <div class="modal-body">
         <div id="print-section">
           <!--Your html stuff that you want to print-->
+          <style>
+            @page { size: 80mm 40mm } /* output size */
+            body.receipt .sheet { width: 80mm; height: 40mm } /* sheet size */
+            @media print { body.receipt { width: 80mm } } /* fix for Chrome */
+          </style>
           <div class="row">
             <div class="col-sm-6">
               <table style="width: 330px; font-size: 11px;">

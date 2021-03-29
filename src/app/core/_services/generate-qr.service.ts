@@ -20,8 +20,13 @@ export class GenerateQrService {
   }
 
   gen(data: any) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + localStorage.getItem("tokenSmartTooling"),
+      }),
+    };
     const url = this.baseUrl + 'generateqr/generate';
-    return this.http.post(url, {dataTablesParam: data}, {});
+    return this.http.post(url, {dataTablesParam: data}, httpOptions);
   }
 
   listPrep(dataTablesParam: any) {

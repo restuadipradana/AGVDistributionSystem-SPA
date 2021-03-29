@@ -46,10 +46,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       processing: true,
       searching: false,
       ajax: (dataTablesParameters: any, callback) => {
-        console.log("st")
         dataTablesParameters.searchCriteria = this.searchCriteria;
-        console.log(dataTablesParameters)
-        console.log("dt")
         this.generateQrSvc.listPrep(dataTablesParameters)
           .subscribe(resp => {
             this.listPrep = resp.data;
@@ -78,14 +75,10 @@ export class StatusComponent implements OnInit, AfterViewInit {
       processing: true,
       searching: false,
       ajax: (dataTablesParameters: any, callback) => {
-        console.log("st")
         dataTablesParameters.searchCriteria = this.searchCriteria1;
-        console.log(dataTablesParameters)
-        console.log("dt")
         this.generateQrSvc.listSti(dataTablesParameters)
           .subscribe(resp => {
             this.listSti = resp.data;
-            console.log(resp);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -130,7 +123,6 @@ export class StatusComponent implements OnInit, AfterViewInit {
   }
 
   printData(dataclicked: ListQRCode){
-    console.log("ok", this.selectedData);
     this.printModal.hide();
   }
 

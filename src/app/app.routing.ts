@@ -8,10 +8,12 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { AuthGuard } from './core/_guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
@@ -51,6 +53,7 @@ export const routes: Routes = [
     },
     children: [
       {
+        canActivate: [AuthGuard],
         path: 'user',
         loadChildren: () => import('./views/user-management/user-management.module').then(m => m.UserManagementModule)
       },
@@ -79,7 +82,9 @@ export const routes: Routes = [
         loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
       },
       {
+        canActivate: [AuthGuard],
         path: 'dashboard',
+        runGuardsAndResolvers: 'always',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {

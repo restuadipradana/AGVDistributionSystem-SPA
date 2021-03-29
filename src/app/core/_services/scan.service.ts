@@ -15,12 +15,12 @@ export class ScanService {
 
   scanReady(scanQr: string){
     console.log("Scanned: ", scanQr);
-    return this.http.get<any>(this.baseUrl + 'scan/scanready', { params:{scanQr:scanQr}})
+    return this.http.get<any>(this.baseUrl + 'scan/scanready', { params:{scanQr:scanQr}, headers: this.getToken().headers})
   }
 
   scanDelivery(scanQr: string){
     console.log("Scanned: ", scanQr);
-    return this.http.get<any>(this.baseUrl + 'scan/scandelivery', { params:{scanQr:scanQr}})
+    return this.http.get<any>(this.baseUrl + 'scan/scandelivery', { params:{scanQr:scanQr}, headers: this.getToken().headers})
   }
 
   getStiStat(){
@@ -29,6 +29,15 @@ export class ScanService {
 
   getPrepStat(){
     return this.http.get<any>(this.baseUrl + 'scan/getprepstat-today')
+  }
+
+  getToken() { //send token header for request to authorized cpntoler
+    let httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + localStorage.getItem("tokenSmartTooling"),
+      }),
+    };
+    return httpOptions;
   }
 
 

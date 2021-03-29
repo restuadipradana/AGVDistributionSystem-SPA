@@ -40,10 +40,19 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { JwtModule } from "@auth0/angular-jwt";
+import { AuthService } from './core/_services/auth.service';
+import { AuthGuard } from './core/_guards/auth.guard';
+import { FormsModule } from '@angular/forms';
+
+export function tokenGetter() {
+  return localStorage.getItem("tokenSmartTooling");
+}
 
 @NgModule({
   imports: [
     HttpClientModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -55,7 +64,16 @@ import { ChartsModule } from 'ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5000"],
+        disallowedRoutes: ["localhost:5000/api/auth"],
+        // allowedDomains: ['10.4.0.45:2811'],
+        // disallowedRoutes: ['10.4.0.45:2811/api/auth'],
+      },
+    }),
   ],
   declarations: [
     AppComponent,
@@ -65,10 +83,14 @@ import { ChartsModule } from 'ng2-charts';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+  providers: [
+    AuthService,
+    AuthGuard,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
