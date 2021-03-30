@@ -1,5 +1,5 @@
 import { ListPO } from './list-po';
-export interface ListQRCode {
+export class ListQRCode {
   id: string;
   kind: string;
   qrCode: string;
@@ -15,4 +15,5 @@ export interface ListQRCode {
   pOlist: ListPO[];
   cell: string;
   totQty: number;
+  isCheck: boolean;
 }

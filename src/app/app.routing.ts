@@ -7,6 +7,8 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
+import { NBuildingComponent } from './views/new-kanban/n-building/n-building.component';
+import { NCellComponent } from './views/new-kanban/n-cell/n-cell.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './core/_guards/auth.guard';
 
@@ -16,6 +18,20 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     redirectTo: 'dashboard',
     pathMatch: 'full',
+  },
+  {
+    path: 'building',
+    component: NBuildingComponent,
+    data: {
+      title: 'Building'
+    }
+  },
+  {
+    path: 'building/:building',
+    component: NCellComponent,
+    data: {
+      title: 'Cell'
+    }
   },
   {
     path: '404',

@@ -1,6 +1,17 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-md-12 mb-4">
+      <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="from-group col-md-2">
+          <button type="button" class="btn btn-info pull-right" style="color: white;"  (click)="fetchCheckedIDs()">
+            <i class="fa icon-docs"></i>  &nbsp; Export to Excel
+          </button>
+        </div>
+      </div>
+
       <!-- Nav tabs -->
       <tabset>
         <tab heading="Preparation">
@@ -13,6 +24,7 @@
                     <th>Create Date</th>
                     <th>Status</th>
                     <th>Action</th>
+                    <th>Select to print <input type="checkbox" [(ngModel)]="isPrepChkAll" (change)="checkUncheckAll(1)"   style="float: right; vertical-align: middle;"></th>
                   </tr>
                 </thead>
                 <tbody *ngIf="listPrep?.length != 0">
@@ -21,13 +33,20 @@
                     <td>{{ data.cell }}</td>
                     <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:dd"  }}</td>
                     <td>{{ data.status }}</td>
-                    <td>
+                    <td style="width:7%">
                       <button type="button" class="btn btn-info btn-sm" data-toggle="modal" (click)="printModal.show()">
                         <i class="fa fa-print"></i>
                       </button>
                       <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" (click)="deleteModalP.show()">
                         <i class="fa fa-trash-o"></i>
                       </button>
+                    </td>
+                    <td style="width:12%">
+                      <div class="form-check form-check-inline" style="align-items: center;">
+                        <label class="form-check-label">
+                          <input  class="form-check-input" type="checkbox" [(ngModel)]="data.isCheck"  (change)="fetchSelectedPrepItems()" id="printCheck" >
+                        </label>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -49,21 +68,29 @@
                     <th>Create Date</th>
                     <th>Status</th>
                     <th>Action</th>
+                    <th>Select to print <input type="checkbox" [(ngModel)]="isStiChkAll" (change)="checkUncheckAll(2)"   style="float: right; vertical-align: middle;"></th>
                   </tr>
                 </thead>
                 <tbody *ngIf="listSti?.length != 0">
                   <tr *ngFor="let data of listSti" (click)="clickRow(data)">
                     <td><div *ngFor="let epo of data.pOlist">{{ epo.po }}<br></div></td>
                     <td>{{ data.cell }}</td>
-                    <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:dd"  }}</td>
+                    <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:ss"  }}</td>
                     <td>{{ data.status }}</td>
-                    <td>
+                    <td style="width:7%">
                       <button type="button" class="btn btn-info btn-sm" data-toggle="modal" (click)="printModal.show()">
                         <i class="fa fa-print"></i>
                       </button>
                       <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" (click)="deleteModalS.show()">
                         <i class="fa fa-trash-o"></i>
                       </button>
+                    </td>
+                    <td style="width:12%">
+                      <div class="form-check form-check-inline" style="align-items: center;">
+                        <label class="form-check-label">
+                          <input  class="form-check-input" type="checkbox" [(ngModel)]="data.isCheck"  (change)="fetchSelectedStiItems()" id="printCheck" >
+                        </label>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -131,7 +158,7 @@
                   </tr>
                   <tr>
                     <td style="width:7.5085%">Date</td>
-                    <td style="width:42.4346%">{{selectedData?.generateAt | date: "yyyy/MM/dd HH:mm:dd" }}</td>
+                    <td style="width:42.4346%">{{selectedData?.generateAt | date: "yyyy/MM/dd HH:mm:ss" }}</td>
                   </tr>
                 </tbody>
               </table>

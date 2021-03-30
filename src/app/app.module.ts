@@ -44,6 +44,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { AuthService } from './core/_services/auth.service';
 import { AuthGuard } from './core/_guards/auth.guard';
 import { FormsModule } from '@angular/forms';
+import { NBuildingComponent } from './views/new-kanban/n-building/n-building.component';
+import { NCellComponent } from './views/new-kanban/n-cell/n-cell.component';
 
 export function tokenGetter() {
   return localStorage.getItem("tokenSmartTooling");
@@ -81,7 +83,9 @@ export function tokenGetter() {
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NBuildingComponent,
+    NCellComponent
   ],
   providers: [
     AuthService,

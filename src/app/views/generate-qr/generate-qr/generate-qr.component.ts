@@ -134,6 +134,7 @@ export class GenerateQrComponent implements OnInit {
       //console.log(value.isPrepCheck);
       return value.isPrepCheck
     });
+    console.log(this.selectedItemsList);
   }
 
   fetchSelectedStiItems() { //chk box sti
@@ -142,6 +143,7 @@ export class GenerateQrComponent implements OnInit {
       //console.log(value.isStiCheck);
       return value.isStiCheck
     });
+    console.log(this.selectedItemsList);
   }
 
   fetchCheckedIDs() { //generate btn
@@ -149,7 +151,7 @@ export class GenerateQrComponent implements OnInit {
     this.checkedPrepIDs = [];
     this.checkedStiIDs = [];
     this.listPOs.forEach((value) => {
-      //console.log(value);
+      console.log(value);
       if (value.isPrepCheck && value.prepStatId == null) {
         this.checkedPrepIDs.push(value);
       }

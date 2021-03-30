@@ -1,0 +1,39 @@
+.cell{
+  padding-right:4px;
+  padding-left:4px;
+  padding-bottom: 0px;
+  width:14%;
+}
+
+.side{
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-left:2px;
+  padding-right: 2px;
+  padding-bottom: 0px;
+}
+
+.deliverstat{
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #15a52d;
+}
+.readystat{
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #da9708;
+}
+.nodatastat{
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #30302f;
+}
+.box {
+  background-color: #4e83e6;
+}
