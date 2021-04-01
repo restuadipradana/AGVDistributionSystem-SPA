@@ -37,7 +37,7 @@ export class UserService {
   getToken() { //send token header for request to authorized cpntoler
     let httpOptions = {
       headers: new HttpHeaders({
-        Authorization: "Bearer " + localStorage.getItem("tokenSmartTooling"),
+        Authorization: "Bearer " + localStorage.getItem("tokenAGVdist"),
       }),
     };
     return httpOptions;

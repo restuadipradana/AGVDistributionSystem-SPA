@@ -22,8 +22,8 @@ export class AuthService {
       map((response: any) => {
         const user = response;
         if (user) {
-          localStorage.setItem('tokenSmartTooling', user.token);
-          localStorage.setItem('userSmartTooling', JSON.stringify(user.user));
+          localStorage.setItem('tokenAGVdist', user.token);
+          localStorage.setItem('userAGVdist', JSON.stringify(user.user));
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           this.currentUser = user.user;
         }
@@ -32,8 +32,8 @@ export class AuthService {
   }
 
   loggedIn() {
-    const token = localStorage.getItem('tokenSmartTooling');
-    const curentUser  = JSON.parse(localStorage.getItem("userSmartTooling"));
+    const token = localStorage.getItem('tokenAGVdist');
+    const curentUser  = JSON.parse(localStorage.getItem("userAGVdist"));
     if(curentUser==null || curentUser.role == undefined)
     {
       return false;

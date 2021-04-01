@@ -48,7 +48,7 @@ import { NBuildingComponent } from './views/new-kanban/n-building/n-building.com
 import { NCellComponent } from './views/new-kanban/n-cell/n-cell.component';
 
 export function tokenGetter() {
-  return localStorage.getItem("tokenSmartTooling");
+  return localStorage.getItem("tokenAGVdist");
 }
 
 @NgModule({
@@ -70,10 +70,10 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:5000"],
-        disallowedRoutes: ["localhost:5000/api/auth"],
-        // allowedDomains: ['10.4.0.45:2811'],
-        // disallowedRoutes: ['10.4.0.45:2811/api/auth'],
+        //allowedDomains: ["localhost:5000"],
+        //disallowedRoutes: ["localhost:5000/api/auth"],
+        allowedDomains: ['10.11.0.32:5100'],
+        disallowedRoutes: ['10.11.0.32:5100/api/auth'],
       },
     }),
   ],

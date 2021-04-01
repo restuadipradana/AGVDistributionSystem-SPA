@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
-    const token = localStorage.getItem("tokenSmartTooling");
+    const token = localStorage.getItem("tokenAGVdist");
     if (token) {
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }

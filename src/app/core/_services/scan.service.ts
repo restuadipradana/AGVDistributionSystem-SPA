@@ -14,12 +14,12 @@ export class ScanService {
   constructor(private http: HttpClient) { }
 
   scanReady(scanQr: string){
-    console.log("Scanned: ", scanQr);
+    //console.log("Scanned: ", scanQr);
     return this.http.get<any>(this.baseUrl + 'scan/scanready', { params:{scanQr:scanQr}, headers: this.getToken().headers})
   }
 
   scanDelivery(scanQr: string){
-    console.log("Scanned: ", scanQr);
+    //console.log("Scanned: ", scanQr);
     return this.http.get<any>(this.baseUrl + 'scan/scandelivery', { params:{scanQr:scanQr}, headers: this.getToken().headers})
   }
 
@@ -34,7 +34,7 @@ export class ScanService {
   getToken() { //send token header for request to authorized cpntoler
     let httpOptions = {
       headers: new HttpHeaders({
-        Authorization: "Bearer " + localStorage.getItem("tokenSmartTooling"),
+        Authorization: "Bearer " + localStorage.getItem("tokenAGVdist"),
       }),
     };
     return httpOptions;

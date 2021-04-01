@@ -20,10 +20,9 @@ export class ScanAgvComponent implements OnInit {
   }
 
   searchqr(){
-    console.log(this.scanQr);
+    //console.log(this.scanQr);
     if(this.scanQr != null || this.scanQr == '')
     {
-      console.log(1);
       this._scanSvc.scanDelivery(this.scanQr).subscribe(
         (res: any) => {
           this.scannedQr = res;

@@ -22,7 +22,7 @@ export class GenerateQrService {
   gen(data: any) {
     let httpOptions = {
       headers: new HttpHeaders({
-        Authorization: "Bearer " + localStorage.getItem("tokenSmartTooling"),
+        Authorization: "Bearer " + localStorage.getItem("tokenAGVdist"),
       }),
     };
     const url = this.baseUrl + 'generateqr/generate';
@@ -47,7 +47,7 @@ export class GenerateQrService {
   }
 
   exportExcel(param: any) {
-    console.log("param ", param)
+    //console.log("param ", param)
     return this.http.post(this.baseUrl + 'generateqr/exportExcel',{dataParam: param},{responseType: 'blob' })
       .subscribe((result: Blob) => {
         if (result.type !== 'application/xlsx') {
@@ -57,7 +57,7 @@ export class GenerateQrService {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         const currentTime = new Date();
-        const filename = 'ExcelQR' + currentTime.getFullYear().toString() +
+        const filename = 'ExcelQR_' + currentTime.getFullYear().toString() +
           (currentTime.getMonth() + 1) + currentTime.getDate() +
           currentTime.toLocaleTimeString().replace(/[ ]|[,]|[:]/g, '').trim() + '.xlsx';
         link.href = url;

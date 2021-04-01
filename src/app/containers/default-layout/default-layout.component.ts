@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = [];
-  currentUser: any = JSON.parse(localStorage.getItem('userSmartTooling'));
+  currentUser: any = JSON.parse(localStorage.getItem('userAGVdist'));
 
 
   toggleMinimize(e) {
@@ -26,8 +26,8 @@ export class DefaultLayoutComponent {
     }
 
   logout() {
-    localStorage.removeItem('tokenSmartTooling');
-    localStorage.removeItem('userSmartTooling');
+    localStorage.removeItem('tokenAGVdist');
+    localStorage.removeItem('userAGVdist');
     this.authService.decodedToken = null;
     this.authService.currentUser = null;
     this.router.navigate(['/login']);

@@ -29,7 +29,7 @@ export class ScanReadyComponent implements OnInit {
 
 
   searchqr(){
-    console.log(this.scanQr);
+    //console.log(this.scanQr);
     if(this.scanQr != null || this.scanQr == '')
     {
       this._scanSvc.scanReady(this.scanQr).subscribe(

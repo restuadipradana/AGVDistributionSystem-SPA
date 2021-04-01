@@ -85,7 +85,7 @@ export class GenerateQrComponent implements OnInit {
   }
 
   clickRow(dataclicked: ListPO){
-    console.log("click ", dataclicked.po);
+    //console.log("click ", dataclicked.po);
 
   }
 
@@ -151,7 +151,7 @@ export class GenerateQrComponent implements OnInit {
     this.checkedPrepIDs = [];
     this.checkedStiIDs = [];
     this.listPOs.forEach((value) => {
-      console.log(value);
+      //console.log(value);
       if (value.isPrepCheck && value.prepStatId == null) {
         this.checkedPrepIDs.push(value);
       }

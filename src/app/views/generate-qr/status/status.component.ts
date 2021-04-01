@@ -123,7 +123,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
   }
 
   clickRow(dataclicked: ListQRCode){
-    console.log("click ", dataclicked);
+    //console.log("click ", dataclicked);
     this.selectedPrepId = dataclicked.id;
     this.selectedData = dataclicked;
     this.selectedData.totQty = dataclicked.pOlist.reduce((acc, val) => acc += val.qty, 0);
@@ -170,7 +170,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       //console.log(value.isPrepCheck);
       return value.isCheck;
     });
-    console.log(this.selectedItemsList);
+    //console.log(this.selectedItemsList);
   }
 
   fetchSelectedStiItems() { //chk box sti
@@ -179,7 +179,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       //console.log(value.isStiCheck);
       return value.isCheck
     });
-    console.log(this.listSti);
+    //console.log(this.listSti);
   }
 
   checkUncheckAll(kind: number) { //ck all by kind; 1 = prep, 2 = sti
@@ -205,14 +205,14 @@ export class StatusComponent implements OnInit, AfterViewInit {
 
     this.checkedList = [];
     this.listPrep.forEach((value) => {
-      console.log(value);
+      //console.log(value);
       if (value.isCheck) {
         value.totQty = value.pOlist.reduce((acc, val) => acc += val.qty, 0);
         this.checkedList.push(value);
       }
     });
     this.listSti.forEach((value) => {
-      console.log(value);
+      //console.log(value);
       if (value.isCheck) {
         value.totQty = value.pOlist.reduce((acc, val) => acc += val.qty, 0);
         this.checkedList.push(value);
@@ -226,6 +226,8 @@ export class StatusComponent implements OnInit, AfterViewInit {
         dtInstance.ajax.reload(null, false);
       });
     });
+    this.isPrepChkAll = false;
+    this.isStiChkAll = false;
 
 
   }
