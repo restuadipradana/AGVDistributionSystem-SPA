@@ -3,6 +3,7 @@ import { UserService } from './../../core/_services/user.service';
 import {Component, ViewChild} from '@angular/core';
 import { NavItem } from '../../_nav';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +20,7 @@ export class DefaultLayoutComponent {
   }
 
   constructor(private authService: AuthService,
+    private spinnerService: NgxSpinnerService,
     private router: Router,
     private userService: UserService,
     private nav: NavItem) {

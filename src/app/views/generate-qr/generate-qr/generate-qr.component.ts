@@ -9,6 +9,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { data } from 'jquery';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import {ModalDirective} from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-generate-qr',
@@ -39,9 +40,11 @@ export class GenerateQrComponent implements OnInit {
   isCkAllSti:boolean;
   checkedCategoryList:any;
 
-  constructor(private generateQrSvc: GenerateQrService) { }
+  constructor(private generateQrSvc: GenerateQrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.isCkAllPrep = false;
     this.isCkAllSti = false;
     this.dtOptions = {
@@ -58,6 +61,7 @@ export class GenerateQrComponent implements OnInit {
         this.generateQrSvc.search(dataTablesParameters)
           .subscribe(resp => {
             this.listPOs = resp.data;
+            this.spinner.hide();
             //console.log(resp);
             callback({
               recordsTotal: resp.recordsTotal,
@@ -147,7 +151,7 @@ export class GenerateQrComponent implements OnInit {
   }
 
   fetchCheckedIDs() { //generate btn
-
+    this.spinner.show();
     this.checkedPrepIDs = [];
     this.checkedStiIDs = [];
     this.listPOs.forEach((value) => {
@@ -167,6 +171,7 @@ export class GenerateQrComponent implements OnInit {
       () => {
         //console.log("sukses");
         this.packdata = {};
+        this.spinner.hide();
         //reload data w/o reset paging
         this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
           dtInstance.ajax.reload(null, false);
@@ -174,6 +179,7 @@ export class GenerateQrComponent implements OnInit {
       },
       (error) => {
         console.log(error.error);
+        this.spinner.hide();
       }
     );
 

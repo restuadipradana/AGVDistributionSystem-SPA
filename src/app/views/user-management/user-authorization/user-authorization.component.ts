@@ -5,6 +5,7 @@ import { UserLogged } from './../../../core/_models/user-logged';
 import { UserService } from './../../../core/_services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {ModalDirective} from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user-authorization',
@@ -28,7 +29,8 @@ export class UserAuthorizationComponent implements OnInit {
   @ViewChild('createModal') public createModal: ModalDirective;
   @ViewChild('editModal') public editModal: ModalDirective;
 
-  constructor(private _userSvc: UserService) { }
+  constructor(private _userSvc: UserService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     //console.log("ud", this.userDetail)
@@ -36,14 +38,17 @@ export class UserAuthorizationComponent implements OnInit {
   }
 
   getListUser(){
+    this.spinner.show();
     this._userSvc.getAllUser().subscribe(
       (res: any) => {
         this.reuslt = res;
         this.listsUser = this.reuslt.lists;
         this.roles = this.reuslt.roles;
+        this.spinner.hide();
       },
       (error) => {
         console.log(error);
+        this.spinner.hide();
       }
     );
   }

@@ -6,6 +6,7 @@ import { SearchCriteriaDT } from '../../../core/_models/dtModels/datatable';
 import { Subject, Observable, Subscription } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import {ModalDirective} from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-status',
@@ -40,9 +41,11 @@ export class StatusComponent implements OnInit, AfterViewInit {
   packdata: any = {};
 
 
-  constructor(private generateQrSvc: GenerateQrService) { }
+  constructor(private generateQrSvc: GenerateQrService,
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.isPrepChkAll = false;
     this.isStiChkAll = false;
     this.flags = 'XY';
@@ -86,6 +89,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
         this.generateQrSvc.listSti(dataTablesParameters)
           .subscribe(resp => {
             this.listSti = resp.data;
+            this.spinner.hide();
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -201,8 +205,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
     }
   }
 
-  fetchCheckedIDs() { //generate btn
-
+  fetchCheckedIDs() { //generate excel btn
     this.checkedList = [];
     this.listPrep.forEach((value) => {
       //console.log(value);
@@ -218,18 +221,19 @@ export class StatusComponent implements OnInit, AfterViewInit {
         this.checkedList.push(value);
       }
     });
-    this.packdata.selectedData = this.checkedList;
+    //console.log("ceked list ", this.checkedList);
 
-    this.generateQrSvc.exportExcel(this.packdata);
-    this.dtElements.forEach((dtElement: DataTableDirective) => {
-      dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.ajax.reload(null, false);
+    if(this.checkedList.length != 0) {
+      this.packdata.selectedData = this.checkedList;
+      this.generateQrSvc.exportExcel(this.packdata);
+      this.isPrepChkAll = false;
+      this.isStiChkAll = false;
+      this.dtElements.forEach((dtElement: DataTableDirective) => {
+        dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.ajax.reload(null, false);
+        });
       });
-    });
-    this.isPrepChkAll = false;
-    this.isStiChkAll = false;
-
-
+    }
   }
 
 }

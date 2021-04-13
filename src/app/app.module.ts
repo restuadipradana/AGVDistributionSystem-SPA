@@ -6,6 +6,7 @@ import { HttpClientModule} from '@angular/common/http'
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -61,6 +62,7 @@ export function tokenGetter() {
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
+    NgxSpinnerModule,
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
