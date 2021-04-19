@@ -27,7 +27,6 @@ export class GenerateQrComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  @ViewChild('largeModal') public largeModal: ModalDirective;
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   searchCriteria: SearchCriteriaDT = { isPageLoad: true, filter: '', filter2: '', filter3: '' };
@@ -71,7 +70,7 @@ export class GenerateQrComponent implements OnInit {
           });
       },
       columns: [
-        { data: 'line', 'orderable': false },
+        { data: 'cellName', 'orderable': false },
         { data: 'style_Name', 'orderable': false },
         { data: 'article', 'orderable': false },
         { data: 'mo_No', 'orderable': false },
@@ -80,7 +79,7 @@ export class GenerateQrComponent implements OnInit {
         { data: 'prepStatId', 'orderable': false },
         { data: 'stiStatId', 'orderable': false }
       ],
-      order: [0, 'asc'],
+      //order: [0, 'asc'],
       autoWidth: false
     };
     //this.fetchSelectedItems();

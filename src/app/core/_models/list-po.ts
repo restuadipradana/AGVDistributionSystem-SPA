@@ -1,6 +1,7 @@
 export interface ListPO {
   factory: string;
   line: string;
+  cellName: string;
   mO_No: string;
   mO_Seq: string;
   po: string;

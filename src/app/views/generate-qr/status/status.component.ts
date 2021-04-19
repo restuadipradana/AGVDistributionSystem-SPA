@@ -70,7 +70,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       },
       columns: [
         { data: 'pOlist', 'orderable': false },
-        { data: 'cell', 'orderable': true },
+        { data: 'cell', 'orderable': false },
         { data: 'generateAt', 'orderable': false },
         { data: 'status', 'orderable': false }
       ],
@@ -99,7 +99,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       },
       columns: [
         { data: 'pOlist', 'orderable': false },
-        { data: 'cell', 'orderable': true },
+        { data: 'cell', 'orderable': false },
         { data: 'generateAt', 'orderable': false },
         { data: 'status', 'orderable': false }
       ],
