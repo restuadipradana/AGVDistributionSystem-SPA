@@ -16,4 +16,5 @@ export class ListQRCode {
   cell: string;
   totQty: number;
   isCheck: boolean;
+  cellName: string;
 }

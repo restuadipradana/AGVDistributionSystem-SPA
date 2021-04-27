@@ -94,7 +94,7 @@ export class GenerateQrComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.dtTrigger.next();
-    console.log(1)
+    //console.log(1)
   }
 
   rerender(): void {

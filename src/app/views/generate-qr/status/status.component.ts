@@ -17,7 +17,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
 
   dtOptions: DataTables.Settings[] = [];
   dtTrigger: Subject<any> = new Subject();
-  @ViewChild('printModal') public printModal: ModalDirective;
+  //@ViewChild('printModal') public printModal: ModalDirective;
   @ViewChild('deleteModalP') public deleteModalP: ModalDirective;
   @ViewChild('deleteModalS') public deleteModalS: ModalDirective;
   @ViewChildren(DataTableDirective)
@@ -60,7 +60,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
         this.generateQrSvc.listPrep(dataTablesParameters)
           .subscribe(resp => {
             this.listPrep = resp.data;
-            //console.log(resp);
+            //console.log("prepdata", resp);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -70,7 +70,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       },
       columns: [
         { data: 'pOlist', 'orderable': false },
-        { data: 'cell', 'orderable': false },
+        { data: 'cellName', 'orderable': false },
         { data: 'generateAt', 'orderable': false },
         { data: 'status', 'orderable': false }
       ],
@@ -90,6 +90,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
           .subscribe(resp => {
             this.listSti = resp.data;
             this.spinner.hide();
+            //console.log("stidata", resp);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -99,7 +100,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
       },
       columns: [
         { data: 'pOlist', 'orderable': false },
-        { data: 'cell', 'orderable': false },
+        { data: 'cellName', 'orderable': false },
         { data: 'generateAt', 'orderable': false },
         { data: 'status', 'orderable': false }
       ],
@@ -110,7 +111,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dtTrigger.next();
-    console.log(1)
+    //console.log(1)
   }
 
   rerender(): void {
@@ -133,9 +134,9 @@ export class StatusComponent implements OnInit, AfterViewInit {
     this.selectedData.totQty = dataclicked.pOlist.reduce((acc, val) => acc += val.qty, 0);
   }
 
-  printData(dataclicked: ListQRCode){
-    this.printModal.hide();
-  }
+  //printData(dataclicked: ListQRCode){
+  //  this.printModal.hide();
+  //}
 
   deleteData(kind: string, data: ListQRCode){
     if(kind == 'P')
@@ -225,6 +226,7 @@ export class StatusComponent implements OnInit, AfterViewInit {
 
     if(this.checkedList.length != 0) {
       this.packdata.selectedData = this.checkedList;
+      console.log("data : ", this.packdata)
       this.generateQrSvc.exportExcel(this.packdata);
       this.isPrepChkAll = false;
       this.isStiChkAll = false;

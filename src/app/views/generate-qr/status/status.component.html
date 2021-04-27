@@ -30,7 +30,7 @@
                 <tbody *ngIf="listPrep?.length != 0">
                   <tr *ngFor="let data of listPrep" (click)="clickRow(data)">
                     <td><div *ngFor="let epo of data.pOlist">{{ epo.po }}<br></div></td>
-                    <td>{{ data.cell }}</td>
+                    <td>{{ data.cellName }}</td>
                     <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:ss"  }}</td>
                     <td>{{ data.status }}</td>
                     <td style="width:7%">
@@ -75,7 +75,7 @@
                 <tbody *ngIf="listSti?.length != 0">
                   <tr *ngFor="let data of listSti" (click)="clickRow(data)">
                     <td><div *ngFor="let epo of data.pOlist">{{ epo.po }}<br></div></td>
-                    <td>{{ data.cell }}</td>
+                    <td>{{ data.cellName }}</td>
                     <td>{{ data.generateAt | date: "yyyy/MM/dd HH:mm:ss"  }}</td>
                     <td>{{ data.status }}</td>
                     <td style="width:7%">
@@ -109,7 +109,7 @@
   </div>
 </div>
 
-<!-- MODAAALLLLL-->
+<!-- MODAAALLLLL
 <div bsModal #printModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -121,18 +121,12 @@
       </div>
       <div class="modal-body">
         <div id="print-section">
-          <!--Your html stuff that you want to print-->
-          <style>
-            @page { size: 80mm 40mm } /* output size */
-            body.receipt .sheet { width: 80mm; height: 40mm } /* sheet size */
-            @media print { body.receipt { width: 80mm } } /* fix for Chrome */
-          </style>
           <div class="row">
             <div class="col-sm-6">
               <table style="width: 330px; font-size: 11px;">
                 <tbody>
                   <tr>
-                    <td rowspan="9" style="width:30%"><!--<qrcode [qrdata]="selectedData?.qrCode" [width]="135" [errorCorrectionLevel]="'M'" [margin]="1" [elementType]="'url'"></qrcode>--></td>
+                    <td rowspan="9" style="width:30%"><qrcode [qrdata]="selectedData?.qrCode" [width]="135" [errorCorrectionLevel]="'M'" [margin]="1" [elementType]="'url'"></qrcode></td>
                     <td colspan="2" style="width:70%">
                     <p style="text-align:center" *ngIf="selectedData?.kind == 'STI'"><strong>STITCHING</strong></p>
                     <p style="text-align:center" *ngIf="selectedData?.kind == 'PREP'"><strong>PREPARATION</strong></p>
@@ -176,9 +170,10 @@
         <button type="button" class="btn btn-secondary" (click)="printModal.hide()">Close</button>
         <button type="button" class="btn btn-primary" (click)="printData(selectedData)"  printSectionId="print-section" ngxPrint>Print</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
+-->
 
 <div bsModal #deleteModalP="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-danger" role="document">
