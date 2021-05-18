@@ -10,6 +10,6 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.router.navigate(['/kanban']);
+    //this.router.navigate(['/kanban']);
   }
 }

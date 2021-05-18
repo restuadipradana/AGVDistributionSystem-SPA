@@ -7,7 +7,8 @@ export const navItems: INavData[] = [];
   providedIn: "root", // <- ADD THIS
 })
 
-export class NavItem {
+/*
+export class NavItemX {
   navItems: INavData[] = [];
   hasKanban: boolean;
   hasGenerateQR: boolean;
@@ -65,10 +66,12 @@ export class NavItem {
           const children21 = {
             name: '2.1. Generate QR',
             url: '/generate/generate',
+            class: "menu-margin",
           };
           const children22 = {
             name: '2.2 Status',
             url: '/generate/status',
+            class: "menu-margin",
           };
           const children31 = {
             name: '3.1. Scan Ready',
@@ -114,6 +117,128 @@ export class NavItem {
     if (this.hasUserManageent) {
       this.navItems.push(navItemUserManagement);
     }
+
+    return this.navItems;
+  }
+
+}
+*/
+
+export class NavItem {
+  navItems: INavData[] = [];
+  hasSettings: boolean;
+
+  constructor() {}
+
+  getNav(user: any) {
+
+    this.navItems = [];
+    this.hasSettings = false;
+
+    if( user == null) return [    ];
+
+
+
+    const navItemSettings = {
+      name: '0. Settings',
+      url: '/settings',
+      icon: 'icon-equalizer',
+      children: [],
+    };
+
+    const navItemMaintain = {
+      name: '1. Maintain',
+      url: '/maintain',
+      icon: 'icon-note',
+      children: [],
+    };
+
+    const navItemTransaction = {
+      name: '2. Transaction',
+      url: '/transaction',
+      icon: 'icon-loop',
+      children: [],
+    };
+
+    const navItemKanban = {
+      name: '3. Kanban',
+      url: '/kanban',
+      icon: 'icon-graph',
+      children: [
+        {
+          name: '3.1. Building Kanban',
+          url: '/kanban',
+          class: "menu-margin",
+        }
+      ],
+    };
+
+    const navItemReport = {
+      name: '4. Report',
+      url: '/report',
+      icon: 'icon-chart',
+      children: [],
+    };
+
+    const navItemQuery = {
+      name: '5. Query',
+      url: '/query',
+      icon: 'icon-magnifier',
+      children: [],
+    };
+
+    if(user != null) {
+      user.role.forEach((element) => {
+        if (element === "admin") {
+          const children51 = {
+            name: '5.1. Generate QR',
+            url: '/generate/generate',
+            class: "menu-margin",
+          };
+          const children52 = {
+            name: '5.2 Status',
+            url: '/generate/status',
+            class: "menu-margin",
+          };
+          const children21 = {
+            name: '2.1. Scan Ready',
+            url: '/scan/scan-ready',
+            class: "menu-margin",
+          };
+          navItemQuery.children.push(children51);
+          navItemQuery.children.push(children52);
+          navItemTransaction.children.push(children21);
+        }
+
+        if (element === "agv") {
+          const children22 = {
+            name: '2.2 Scan AGV',
+            url: '/scan/scan-agv',
+            class: "menu-margin",
+          };
+          navItemTransaction.children.push(children22);
+        }
+
+        if (element === "autho") {
+          const children01 = {
+            name: '0.1. User Auth',
+            url: '/user/authorization',
+            class: "menu-margin",
+          };
+          navItemSettings.children.push(children01);
+          this.hasSettings = true;
+        }
+      });
+    }
+
+    if(this.hasSettings){
+      this.navItems.push(navItemSettings);
+    }
+    this.navItems.push(navItemMaintain);
+    this.navItems.push(navItemTransaction);
+    this.navItems.push(navItemKanban);
+    this.navItems.push(navItemReport);
+    this.navItems.push(navItemQuery);
 
     return this.navItems;
   }
