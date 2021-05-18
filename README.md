@@ -6,7 +6,7 @@ This is UI project for Distpatch System
 
 ## Versions
 
-See [Versioning](https://github.com/coreui/coreui-free-bootstrap-admin-template)
+See [Versioning](https://github.com/restuadipradana/AGVDistributionSystem-SPA/blob/master/VERSION.md)
 
 ## Installation
 
