@@ -55,14 +55,14 @@
                 <td style="width:12%">
                   <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                      <input *ngIf="listPO.prepStatId == null" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isPrepCheck" (change)="changeSelection(1)" id="prepCheck" > {{ listPO.prepStat }}
+                      <input *ngIf="(listPO.prepStatId == null || listPO.prepStatId == '')" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isPrepCheck" (change)="changeSelection(1)" id="prepCheck" > {{ listPO.prepStat }}
                     </label>
                   </div>
                 </td>
                 <td style="width:12%">
                   <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                      <input *ngIf="listPO.stiStatId == null" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isStiCheck" (change)="changeSelection(2)" id="stiCheck" > {{ listPO.stiStat }}
+                      <input *ngIf="(listPO.stiStatId == null || listPO.stiStatId == '')" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isStiCheck" (change)="changeSelection(2)" id="stiCheck" > {{ listPO.stiStat }}
                     </label>
                   </div>
                 </td>

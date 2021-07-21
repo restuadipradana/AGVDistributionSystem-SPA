@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased] - yyyy-mm-dd
+ 
+Here we write upgrading notes for brands. It's a team effort to make them as
+straightforward as possible.
+
+Just clean code
+ 
+### Added
+ 
+### Changed
+ 
+### Fixed
+
+
+## [1.0.2] - 2021-07-21
+ 
+### Added
+
+- B Building PO can use Dispatch System
+   
+### Changed
+
+- Change Scan AGV to Scan Dispatch
+ 
+### Fixed
+ 
+- Better performance to Query PO and Status
+
  
 ## [1.0.1] - 2021-05-06
  

@@ -56,7 +56,7 @@ export class LineViewComponent implements OnInit {
     this.buildingNumber = this.route.snapshot.params['building'];
     this.getData(this.buildingNumber);
 
-    const source = interval(30000);
+    const source = interval(15000);
     this.subscription = source.subscribe(val => this.getData(this.buildingNumber));
 
   }

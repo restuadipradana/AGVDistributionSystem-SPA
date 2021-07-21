@@ -212,7 +212,7 @@ export class NavItem {
 
         if (element === "agv") {
           const children22 = {
-            name: '2.2 Scan AGV',
+            name: '2.2 Scan Dispatch',
             url: '/scan/scan-agv',
             class: "menu-margin",
           };

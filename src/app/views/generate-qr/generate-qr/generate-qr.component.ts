@@ -155,10 +155,10 @@ export class GenerateQrComponent implements OnInit {
     this.checkedStiIDs = [];
     this.listPOs.forEach((value) => {
       //console.log(value);
-      if (value.isPrepCheck && value.prepStatId == null) {
+      if (value.isPrepCheck && (value.prepStatId == null || value.prepStatId == "")) {
         this.checkedPrepIDs.push(value);
       }
-      if (value.isStiCheck && value.stiStatId == null) {
+      if (value.isStiCheck && (value.stiStatId == null || value.stiStatId == "")) {
         this.checkedStiIDs.push(value);
       }
     });
