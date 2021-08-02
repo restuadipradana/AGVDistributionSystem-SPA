@@ -18,6 +18,18 @@ Just clean code
  
 ### Fixed
 
+## [1.0.3] - 2021-07-21
+ 
+### Added
+
+   
+### Changed
+
+ 
+### Fixed
+ 
+- Can access from other factory
+
 
 ## [1.0.2] - 2021-07-21
  
