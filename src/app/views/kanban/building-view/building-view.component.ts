@@ -23,6 +23,10 @@ export class BuildingViewComponent implements OnInit {
     this.subscription = source.subscribe(val => this.getData());
   }
 
+  ngOnDestroy() {
+    this.subscription && this.subscription.unsubscribe();
+  }
+
   showLine(buildingNumber){
     this.router.navigate(['/kanban/building/'+buildingNumber]);
   }

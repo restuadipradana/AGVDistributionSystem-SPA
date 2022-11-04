@@ -18,7 +18,20 @@ Just clean code
  
 ### Fixed
 
-## [1.0.3] - 2021-07-21
+## [1.0.4] - 2021-08-07
+ 
+### Added
+
+   
+### Changed
+
+- Matching standalone kanban color with kanban user logged 
+ 
+### Fixed
+ 
+
+
+## [1.0.3] - 2021-08-01
  
 ### Added
 

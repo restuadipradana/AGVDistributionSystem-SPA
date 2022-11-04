@@ -20,12 +20,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password" (keyup)="isWrong=false"  [class.is-invalid]="isWrong" [(ngModel)]="user.password" name="password" autocomplete="current-password" required>
+                    <input type="password" class="form-control" placeholder="Password" (keyup)="isWrong=false" [class.is-invalid]="isWrong" [(ngModel)]="user.password" name="password" autocomplete="current-password" required>
                   </div>
-                  <div class="row">
-                    <div class="col-3">
-                      <button type="submit" class="btn btn-primary px-4"  [disabled]="!form.valid">Login</button>
-                    </div>
+                    <div class="row">
+                      <div class="col-3">
+                        <button type="submit" class="btn btn-primary px-4"  [disabled]="!form.valid">Login</button>
+                      </div>
                     <div class="col-9" style="color: rgb(179, 14, 14);" *ngIf="isWrong == true">
                       Wrong username or password!
                     </div>
