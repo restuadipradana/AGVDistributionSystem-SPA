@@ -1,0 +1,94 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <div class="form-row">
+        <div class="form-group col-md-1">
+          <label for="cell" class="col-form-label float-right">Cell</label>
+        </div>
+        <div class="form-group col-md-2">
+          <input type="text" (keyup)="search()" class="form-control" id="line" [(ngModel)]="lineo" placeholder="Cell">
+        </div>
+        <div class="form-group col-md-1">
+          <label for="po" class="col-form-label float-right">PO</label>
+        </div>
+        <div class="form-group col-md-2">
+          <input type="text" (keyup)="search()" class="form-control" id="po" name="po" [(ngModel)]="poo" placeholder="PO">
+        </div>
+        <div class="form-group col-md-1">
+          <label for="model" class="col-form-label float-right">Model</label>
+        </div>
+        <div class="form-group col-md-2">
+          <input type="text" (keyup)="search()" class="form-control" id="model" [(ngModel)]="modelo" placeholder="Model">
+        </div>
+        <div class="form-group col-md-1">
+        </div>
+        <div class="form-group col-md-2">
+          <!--<button type="button" class="btn btn-primary pull-right" (click)="fetchCheckedIDs()">
+            Generate QR Code
+        </button>-->
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="overflow:auto;" >
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Cell</th>
+              <th>Model</th>
+              <th>Article</th>
+              <th>PO</th>
+              <th>Sequence</th>
+              <th>Qty</th>
+              <th>Status</th>
+              <th>Print </th>
+              <!--<th>Stitching Status <input type="checkbox" [(ngModel)]="isCkAllSti" (change)="checkUncheckAll(2)" style="float: right; vertical-align: middle;"></th>-->
+            </tr>
+          </thead>
+          <tbody *ngIf="listPOs?.length != 0">
+            <tr *ngFor="let listPO of listPOs" (click)="clickRow(listPO)">
+              <td>{{ listPO.cellName }}</td>
+              <td>{{ listPO.style_Name }}</td>
+              <td>{{ listPO.article }}</td>
+              <td>{{ listPO.mO_No }}</td>
+              <td>{{ listPO.po }}</td>
+              <td>{{ listPO.qty }}</td>
+              <td>{{ listPO.prepStat }}</td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" >
+                  <i class="fa fa-print"></i>
+                </button>
+              </td>
+              <!--<td style="width:12%">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input *ngIf="(listPO.prepStatId == null || listPO.prepStatId == '')" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isPrepCheck" (change)="changeSelection(1)" id="prepCheck" > {{ listPO.prepStat }}
+                  </label>
+                </div>
+              </td>
+              <td style="width:12%">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input *ngIf="(listPO.stiStatId == null || listPO.stiStatId == '')" class="form-check-input" type="checkbox" [(ngModel)]="listPO.isStiCheck" (change)="changeSelection(2)" id="stiCheck" > {{ listPO.stiStat }}
+                  </label>
+                </div>
+              </td>-->
+            </tr>
+          </tbody>
+          <tbody *ngIf="listPOs?.length == 0">
+            <tr>
+              <td colspan="3" class="no-data-available">No data!</td>
+            </tr>
+          </tbody>
+      </table>
+      <!--
+      <button type="button" class="btn btn-secondary mr-1" data-toggle="modal" (click)="largeModal.show()">
+        Launch large modal
+      </button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

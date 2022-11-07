@@ -19,6 +19,11 @@ export class GenerateQrService {
     return this.http.post<ResponseDT>(url, dataTablesParam, {});
   }
 
+  search_v2(dataTablesParam: any) {
+    const url = this.baseUrl + 'generateqr/po-list-v2';
+    return this.http.post<ResponseDT>(url, dataTablesParam, {});
+  }
+
   gen(data: any) {
     let httpOptions = {
       headers: new HttpHeaders({

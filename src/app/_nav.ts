@@ -228,6 +228,15 @@ export class NavItem {
           navItemSettings.children.push(children01);
           this.hasSettings = true;
         }
+
+        if (element === "admin-shc") {
+          const children53 = {
+            name: '5.3. Generate QR V2',
+            url: '/generate/generate-v2',
+            class: "menu-margin",
+          };
+          navItemQuery.children.push(children53);
+        }
       });
     }
 

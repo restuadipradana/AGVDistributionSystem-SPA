@@ -11,10 +11,11 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { GenerateQrRoutingModule } from './generate-qr-routing.module';
 import { GenerateQrComponent } from './generate-qr/generate-qr.component';
 import { StatusComponent } from './status/status.component';
+import { GenerateQrV2Component } from './generate-qr-v2/generate-qr-v2.component';
 
 
 @NgModule({
-  declarations: [GenerateQrComponent, StatusComponent],
+  declarations: [GenerateQrComponent, StatusComponent, GenerateQrV2Component],
   imports: [
     CommonModule,
     FormsModule,

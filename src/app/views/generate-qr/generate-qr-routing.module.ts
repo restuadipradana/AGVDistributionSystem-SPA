@@ -1,3 +1,4 @@
+import { GenerateQrV2Component } from './generate-qr-v2/generate-qr-v2.component';
 import { StatusComponent } from './status/status.component';
 import { GenerateQrComponent } from './generate-qr/generate-qr.component';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,14 @@ const routes: Routes = [
         data: {
           title: 'Status List'
         }
-      }
+      },
+      {
+        path: 'generate-v2',
+        component: GenerateQrV2Component,
+        data: {
+          title: 'Create QR Code V2'
+        }
+      },
     ]
   }
 ];
