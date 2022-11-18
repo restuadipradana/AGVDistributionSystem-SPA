@@ -34,6 +34,10 @@ export class GenerateQrService {
     return this.http.post(url, {dataTablesParam: data}, httpOptions);
   }
 
+  gen_v2(cyno: string) {
+    return this.http.get<any>(this.baseUrl + 'generateqr/generate-v2', { params:{cyno:cyno}})
+  }
+
   listPrep(dataTablesParam: any) {
     const url = this.baseUrl + 'generateqr/prep-list';
     return this.http.post<ResponseDT>(url, dataTablesParam, {});

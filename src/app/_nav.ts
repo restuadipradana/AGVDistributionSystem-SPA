@@ -164,13 +164,7 @@ export class NavItem {
       name: '3. Kanban',
       url: '/kanban',
       icon: 'icon-graph',
-      children: [
-        {
-          name: '3.1. Building Kanban',
-          url: '/kanban',
-          class: "menu-margin",
-        }
-      ],
+      children: [],
     };
 
     const navItemReport = {
@@ -205,9 +199,15 @@ export class NavItem {
             url: '/scan/scan-ready',
             class: "menu-margin",
           };
+          const kanban = {
+            name: '3.1. Building Kanban',
+            url: '/kanban',
+            class: "menu-margin",
+          }
           navItemQuery.children.push(children51);
           navItemQuery.children.push(children52);
           navItemTransaction.children.push(children21);
+          navItemKanban.children.push(kanban);
         }
 
         if (element === "agv") {

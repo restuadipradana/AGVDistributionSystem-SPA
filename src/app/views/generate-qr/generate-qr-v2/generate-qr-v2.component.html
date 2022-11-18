@@ -55,7 +55,7 @@
               <td>{{ listPO.qty }}</td>
               <td>{{ listPO.prepStat }}</td>
               <td>
-                <button type="button" class="btn btn-warning btn-sm" >
+                <button type="button" class="btn btn-warning btn-sm" (click)="getPrintData(listPO.po)" >
                   <i class="fa fa-print"></i>
                 </button>
               </td>

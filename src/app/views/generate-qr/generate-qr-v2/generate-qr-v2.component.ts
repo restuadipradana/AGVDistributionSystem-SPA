@@ -5,6 +5,10 @@ import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular
 import { Subject, Observable, Subscription } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { NgxSpinnerService } from "ngx-spinner";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-generate-qr-v2',
@@ -20,6 +24,8 @@ export class GenerateQrV2Component implements OnInit {
   modelo: string;
   lineo: string;
   packdata: any = {};
+  pdfPartData: PartInfo[] = []
+  pdfSizeData: SizeInfo[] = []
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -36,9 +42,10 @@ export class GenerateQrV2Component implements OnInit {
   checkedCategoryList:any;
 
   constructor(private generateQrSvc: GenerateQrService,
-              private spinner: NgxSpinnerService) { }
+              private spinner: NgxSpinnerService, public datepipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.pdfPartData = []
     this.spinner.show();
     this.isCkAllPrep = false;
     this.isCkAllSti = false;
@@ -110,6 +117,111 @@ export class GenerateQrV2Component implements OnInit {
   search() {
     this.rerender();
   }
+
+  getPrintData(cyno: string) {
+    console.log(cyno)
+    this.generateQrSvc.gen_v2(cyno).subscribe(
+      (res: any) => {
+        console.log(res)
+        this.printQr(res)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+
+  printQr(res: any) {
+
+    this.pdfPartData = []
+    this.pdfPartData = res.part
+    this.pdfSizeData = []
+    this.pdfSizeData = res.size_info
+    console.log(this.pdfPartData)
+    let datenow =  this.datepipe.transform(new Date(), 'MM/dd/yyyy hh:mm:ss a')
+
+    let docDefinition = {
+      info: {
+        title: res.po_info.po.trim(),
+        author: 'Restu TSH-IT',
+        subject: 'Dispatch System',
+        keywords: 'nokeyword',
+      },
+      header:
+      function(currentPage, pageCount, pageSize) {
+        let paging = ''
+        //if(pageCount > 1) {
+          paging = '  Page: ' + currentPage.toString() + '/' + pageCount
+        //}
+        return [
+          {
+            margin: [15, 10, 15, 1],
+            columns: [
+              { text: res.po_info.cellName, fontSize: 20, width: '7%', bold: true},
+              {
+                text: res.po_info.po.trim() + ' ' + res.po_info.style_Name.trim() + ' ' + res.po_info.style_No.trim() + ' ' + res.po_info.article.trim() + '\nDate: ' + datenow +
+                paging,
+                fontSize: 20,
+                alignment: 'center',
+                bold: true, width: '85%'},
+              { qr: res.po_info.po.trim() , fit: '65', width: '8%'},
+            ],
+          },
+
+        ]
+      },
+      content: [
+        {
+          table: {
+            headerRows: 1,
+            widths: ['7.5%', '6%', '*', ...this.pdfSizeData.map(e => ('3.3%')), '4%', 'auto', 'auto'],
+            body: [
+              [
+                {style: 'tbHeader', text: 'Mat\'l No'} ,
+                {style: 'tbHeader', text: 'Part'} ,
+                {style: 'tbHeader', text: 'Component'},
+                ...this.pdfSizeData.map(e => ({style: 'tbHeader', text: e.size_Code.trim()})),
+                {style: 'tbHeader', text: 'Total'},
+                {style: 'tbHeader', text: 'Bal. Qty'},
+                {style: 'tbHeader', text: 'Status'},
+              ],
+              ...this.pdfPartData.map(e => ([
+                {style: 'tbContent', text: e.material_ID} ,
+                {style: 'tbContent', text: e.part} ,
+                {style: 'tbContent', text: e.part_Name},
+                ...this.pdfSizeData.map(e => ({style: 'tbContent', text: e.plan_Qty})),
+                {style: 'tbContent', text: res.po_info.qty},
+                {style: 'tbContent', text: ''},
+                {style: 'tbContent', text: ''},
+              ])),
+            ]
+          }
+        },
+        {
+          text: ' ',
+          fontSize: 7,
+        },
+        //{ qr: res.po_info.po.trim() , fit: '80'},
+      ],
+      styles: {
+        tbHeader: {
+          fontSize: 11,
+          alignment: 'center',
+          fillColor: '#bcbcbc',
+        },
+        tbContent: {
+          fontSize: 9,
+          //margin: [0, 15,0, 15]
+        }
+      },
+      pageOrientation: 'landscape',
+      // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+      pageMargins: [15, 75, 15, 5] //top63
+    }
+    pdfMake.createPdf(docDefinition).print();
+  }
+
+  //**********************UNUSED AGAIN*************************** */
 
   changeSelection(kind: number) {
     switch(kind)
@@ -200,6 +312,31 @@ export class GenerateQrV2Component implements OnInit {
     }
 
     //this.fetchCheckedIDs();
+  }
+
 }
 
+export interface PartInfo {
+  pO_Category: string
+  model_No: string
+  color_No: string
+  article: string
+  part: string
+  part_Name: string
+  material_ID: string
+  puF_Kind: string
+  released_Status: string
+  released_By: string
+  released_Time: Date
+}
+
+export interface SizeInfo {
+  factory_ID: string
+  cycle_No: string
+  size_Code: string
+  size_TCode: string
+  plan_Qty: number
+  utN_Yield_Qty: number
+  mO_No: string
+  mO_Seq: string
 }
