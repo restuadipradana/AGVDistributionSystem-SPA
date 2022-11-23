@@ -45,6 +45,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { AuthService } from './core/_services/auth.service';
 import { AuthGuard } from './core/_guards/auth.guard';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { NBuildingComponent } from './views/new-kanban/n-building/n-building.component';
 import { NCellComponent } from './views/new-kanban/n-cell/n-cell.component';
 

@@ -34,6 +34,14 @@ export class UserService {
     return this.http.post(this.baseUrl + 'user/roleuser/' + account, listRoleByUser, this.getToken());
   }
 
+  getUserWorkstation(account: string) {
+    return this.http.get<any>(this.baseUrl + 'user/user-workstation/' + account, this.getToken());
+  }
+
+  saveUserWorkstation(account, workstation, dept) {
+    return this.http.post(this.baseUrl + 'user/save-user-workstation', {account: account, workstation: workstation, dept: dept}, this.getToken());
+  }
+
   getToken() { //send token header for request to authorized cpntoler
     let httpOptions = {
       headers: new HttpHeaders({

@@ -194,11 +194,7 @@ export class NavItem {
             url: '/generate/status',
             class: "menu-margin",
           };
-          const children21 = {
-            name: '2.1. Scan Ready',
-            url: '/scan/scan-ready',
-            class: "menu-margin",
-          };
+
           const kanban = {
             name: '3.1. Building Kanban',
             url: '/kanban',
@@ -206,8 +202,16 @@ export class NavItem {
           }
           navItemQuery.children.push(children51);
           navItemQuery.children.push(children52);
-          navItemTransaction.children.push(children21);
           navItemKanban.children.push(kanban);
+        }
+
+        if (element === "scan") {
+          const children21 = {
+            name: '2.1. Scan Ready',
+            url: '/scan/scan-ready',
+            class: "menu-margin",
+          };
+          navItemTransaction.children.push(children21);
         }
 
         if (element === "agv") {

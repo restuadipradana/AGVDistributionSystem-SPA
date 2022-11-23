@@ -23,11 +23,17 @@ export class UserAuthorizationComponent implements OnInit {
   userAuthorizationName: string = '';
   acc: string;
   btnSave: boolean;
+  userworkstation: any = {}
+  deptList: any
+  selectedDept: string = ''
+  workstationList: any
+  selectedWorkstation: string = ''
 
 
 
   @ViewChild('createModal') public createModal: ModalDirective;
   @ViewChild('editModal') public editModal: ModalDirective;
+  @ViewChild('workstationModal') public workstationModal: ModalDirective;
 
   constructor(private _userSvc: UserService,
               private spinner: NgxSpinnerService) { }
@@ -96,6 +102,41 @@ export class UserAuthorizationComponent implements OnInit {
         console.log("Error: " , error.error.text);
       }
     );
+  }
+
+  getUserWorkstation(account: string) {
+    this._userSvc.getUserWorkstation(account).subscribe(
+      res => {
+        console.log(res)
+        this.userworkstation = res;
+        this.userworkstation.account = account
+        this.selectedDept = this.userworkstation.dept_Id
+        this.selectedWorkstation = this.userworkstation.workstation_Code
+        this.deptList = this.userworkstation.deptList.map(item => {
+          return { id: item.dept_ID, name: item.dept_ID + ' - ' + item.dept_Name }
+        })
+        this.workstationList = this.userworkstation.workstationList.map(item => {
+          return {id: item, name: item }
+        })
+        this.workstationModal.show();
+      }
+    );
+  }
+
+  saveUserWorkstation() {
+    console.log(this.selectedDept, this.selectedWorkstation, this.userworkstation.account)
+    if(this.userworkstation.account === undefined || this.userworkstation.account === '' || this.selectedDept === '')  {
+      return
+    }
+    this._userSvc.saveUserWorkstation(this.userworkstation.account, this.selectedWorkstation, this.selectedDept).subscribe(
+      () => {
+        this.workstationModal.hide()
+        console.log("Save workstation success")
+      },
+      (error) => {
+        console.log("Error guys", error)
+      }
+    )
   }
 
 

@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:5001/api/',
+  apiUrl: 'http://localhost:5000/api/',
   //apiUrl: 'http://TSH-AP2:5100/api/',
 };

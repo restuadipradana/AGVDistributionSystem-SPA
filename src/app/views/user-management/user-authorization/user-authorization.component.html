@@ -11,15 +11,21 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Username</th>
+                <th style="width: 20%;">Username</th>
                 <th>Name</th>
-                <th>Action</th>
+                <th style="width: 10%;">Workstation Modify</th>
+                <th style="width: 10%;">Authorization Modify</th>
               </tr>
             </thead>
             <tbody *ngIf="listsUser?.length != 0">
               <tr *ngFor="let data of listsUser">
                 <td>{{ data.account }}</td>
                 <td>{{ data.name }}</td>
+                <td>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="getUserWorkstation(data.account)">
+                    <i class="fa fa-lock"></i>
+                  </button>
+                </td>
                 <td>
                   <button type="button" class="btn btn-warning btn-sm" (click)="getUserDetail(data.account, data.name)">
                     <i class="fa fa-pencil"></i>
@@ -130,3 +136,48 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div bsModal #workstationModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">User Workstation Maintain</h4>
+        <button type="button" class="close" (click)="workstationModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+              <div class="form-group row">
+                <label for="ccyear" class="col-md-3 col-form-label">Workstation</label>
+                <div class="col-md-9 col-form-label">
+                  <ng-select [items]="workstationList"
+                            bindLabel="name"
+                            bindValue="id"
+                            [(ngModel)]="selectedWorkstation" name="workstation">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="dept" class="col-md-3 col-form-label">Dept</label>
+                <div class="col-md-9 col-form-label">
+                  <ng-select [items]="deptList"
+                            bindLabel="name"
+                            bindValue="id"
+                            [(ngModel)]="selectedDept" name="dept">
+                  </ng-select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!--/.row-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="workstationModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveUserWorkstation()">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

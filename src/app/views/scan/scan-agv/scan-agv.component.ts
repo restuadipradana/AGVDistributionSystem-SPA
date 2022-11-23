@@ -46,21 +46,21 @@ export class ScanAgvComponent implements OnInit {
           msg: `OK - ${new Date().toLocaleTimeString()}`,
           timeout: 10000
         });
-         break;
+        break;
       }
       case 2: {
         this.alertsDismiss.push({
           type: 'danger',
           msg: message,
-          timeout: 3000
+          timeout: 8000
         });
-         break;
+        break;
       }
       default: {
          //statements;
-         break;
+        break;
       }
-   }
+    }
 
   }
 

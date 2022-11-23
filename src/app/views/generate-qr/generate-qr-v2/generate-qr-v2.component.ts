@@ -164,7 +164,7 @@ export class GenerateQrV2Component implements OnInit {
                 fontSize: 20,
                 alignment: 'center',
                 bold: true, width: '85%'},
-              { qr: res.po_info.po.trim() , fit: '65', width: '8%'},
+              { qr: 'COLOC;' + res.po_info.po.trim() , fit: '65', width: '8%'},
             ],
           },
 
