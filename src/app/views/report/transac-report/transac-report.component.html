@@ -1,0 +1,31 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <h4>4.1 Transaction Report</h4>
+    </div>
+    <div class="card-body"  style="height: 500px;">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group row">
+            <label class=" col-form-label" style="width: auto; padding-left: 2%; font-weight: bold;">Transaction Date Range</label>
+            <div style="width: 25%; padding-left: 2%;">
+              <input type="text" class="form-control" placeholder="date range" bsDaterangepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-dark-blue', preventChangeToNextMonth: true, showPreviousMonth: true  }" [(ngModel)]="daterangepickerModel" [bsConfig]="{ }"/>
+            </div>
+            &nbsp; &nbsp; &nbsp;
+            <button type="button" class="btn btn-sm btn-success" (click)="download()">&nbsp; &nbsp;<i class="fa fa-download"></i>&nbsp; Download &nbsp; &nbsp;</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div *ngFor="let alert of alertsDismiss">
+            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" [dismissible]="true">{{ alert.msg }}</alert>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -239,6 +239,12 @@ export class NavItem {
             url: '/generate/generate-v2',
             class: "menu-margin",
           };
+          const children41 = {
+            name: '4.1. Transaction Report',
+            url: '/report/transaction-report',
+            class: "menu-margin",
+          };
+          navItemReport.children.push(children41);
           navItemQuery.children.push(children53);
         }
       });

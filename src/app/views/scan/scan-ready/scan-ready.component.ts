@@ -53,7 +53,7 @@ export class ScanReadyComponent implements OnInit {
     this.alertsDismiss.push({
       type: 'danger',
       msg: message,
-      timeout: 3000
+      timeout: 5000
     });
   }
 

@@ -44,7 +44,7 @@ export class ScanAgvComponent implements OnInit {
         this.alertsDismiss.push({
           type: 'success',
           msg: `OK - ${new Date().toLocaleTimeString()}`,
-          timeout: 10000
+          timeout: 8000
         });
         break;
       }

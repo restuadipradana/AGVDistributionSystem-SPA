@@ -35,7 +35,9 @@ export class GenerateQrService {
   }
 
   gen_v2(cyno: string) {
-    return this.http.get<any>(this.baseUrl + 'generateqr/generate-v2', { params:{cyno:cyno}})
+    return this.http.get<any>(this.baseUrl + 'generateqr/generate-v2', { params:{cyno:cyno} , headers: new HttpHeaders({
+      Authorization: "Bearer " + localStorage.getItem("tokenAGVdist"),
+    })}, )
   }
 
   listPrep(dataTablesParam: any) {

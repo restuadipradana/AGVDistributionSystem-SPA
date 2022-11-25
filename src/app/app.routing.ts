@@ -90,6 +90,11 @@ export const routes: Routes = [
       },
       {
         canActivate: [AuthGuard],
+        path: 'report',
+        loadChildren: () => import('./views/report/report.module').then(m => m.ReportModule)
+      },
+      {
+        canActivate: [AuthGuard],
         path: 'dashboard',
         runGuardsAndResolvers: 'always',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)

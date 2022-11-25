@@ -107,7 +107,7 @@ export class UserAuthorizationComponent implements OnInit {
   getUserWorkstation(account: string) {
     this._userSvc.getUserWorkstation(account).subscribe(
       res => {
-        console.log(res)
+        //console.log(res)
         this.userworkstation = res;
         this.userworkstation.account = account
         this.selectedDept = this.userworkstation.dept_Id
