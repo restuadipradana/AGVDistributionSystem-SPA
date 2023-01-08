@@ -244,7 +244,19 @@ export class NavItem {
             url: '/report/transaction-report',
             class: "menu-margin",
           };
+          const children42 = {
+            name: '4.2. Inquiry Report',
+            url: '/report/inquiry-report',
+            class: "menu-margin",
+          };
+          const kanban = {
+            name: '3.2. Building Kanban V2',
+            url: '/kanban/v2',
+            class: "menu-margin",
+          }
+          navItemKanban.children.push(kanban);
           navItemReport.children.push(children41);
+          navItemReport.children.push(children42);
           navItemQuery.children.push(children53);
         }
       });

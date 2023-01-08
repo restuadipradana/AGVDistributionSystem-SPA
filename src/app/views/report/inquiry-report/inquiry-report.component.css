@@ -1,0 +1,9 @@
+.btx {
+  bottom: 0;
+  position:absolute;
+}
+
+th {
+  padding-left: 10px;
+  padding-right: 10px;
+}

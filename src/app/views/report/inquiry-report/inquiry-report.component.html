@@ -1,0 +1,126 @@
+<div class="animated fadeIn">
+  <div class="card" style="margin-bottom: 0px;">
+    <div class="card-header"  (click)="isCollapsed = !isCollapsed" style="cursor: pointer;">
+      <h4>4.2 Inquiry Report</h4>
+    </div>
+    <div class="card-body" [collapse]="isCollapsed" [isAnimated]="true" >
+      <div class="row">
+        <div class="col-12">
+          <!--<form [formGroup]="searchFrom" (ngSubmit)="searchData()">-->
+            <div class="form-group row">
+              <div class="col-sm-2">
+                <label for="cell">Cell</label>
+                <ng-select [items]="cells"
+                            bindLabel="name"
+                            bindValue="id"
+                            [(ngModel)]="searchCriteria.line" name="cell">
+                </ng-select>
+              </div>
+              <div class="col-sm-2" >
+                <label for="po">PO</label>
+                <input type="text" class="form-control" id="po" [(ngModel)]="searchCriteria.po"
+                [ngClass]="{ 'is-invalid': submitted && errfield }">
+                <div *ngIf="submitted && errfield" class="invalid-feedback">
+                  PO cannot empty
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <label for="scandate">Scan Date Range</label>
+                <input type="text" class="form-control" placeholder="date range"
+                bsDaterangepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-dark-blue',
+                preventChangeToNextMonth: true, showPreviousMonth: false  }"
+                [(ngModel)]="daterangepickerModel" [bsConfig]="{ }"
+                [ngClass]="{ 'is-invalid': submitted && errfield }"/>
+                <div *ngIf="submitted && errfield" class="invalid-feedback">
+                  Or Scan Date cannot empty
+                </div>
+              </div>
+              <div class="col-sm-2" >
+                <label for="status">Status</label>
+                <ng-select [items]="statusList"
+                            bindLabel="name"
+                            bindValue="id"
+                            [(ngModel)]="searchCriteria.status" name="status">
+                </ng-select>
+              </div>
+              <div class="col-sm-2 ">
+                <label for="building">Building</label>
+                <ng-select [items]="buildings"
+                            bindLabel="name"
+                            bindValue="id"
+                            [(ngModel)]="searchCriteria.building" name="building">
+                </ng-select>
+              </div>
+              <div class="col-sm-2 ">
+                <div class="btx">
+                  <button type="button" class="btn btn-block btn-success " (click)="downloadData()">Download</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-2">
+                <label for="seq">Seq</label>
+                <select class="form-control" id="seq" [(ngModel)]="searchCriteria.seq">
+                  <option value="N">N</option>
+                  <option value="Y">Y</option>
+                </select>
+              </div>
+              <div class="col-2 ">
+                <div class="btx">
+                  <button type="button" class="btn btn-block btn-info " (click)="searchData()">Search</button>
+                </div>
+              </div>
+            </div>
+          <!--</form>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div style="overflow:auto;" >
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Cell</th>
+              <th>STI Date</th>
+              <th>PO</th>
+              <th>Model Name</th>
+              <th>Model#</th>
+              <th>Article#</th>
+              <th>Seq</th>
+              <th>Plan Qty</th>
+              <th>Ready Qty</th>
+              <th>Dispatch Qty</th>
+              <th>Balance (Ready-Dispatch)</th>
+              <th>Ready Time</th>
+              <th>Dispatch Time </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="reportdata?.length != 0">
+            <tr *ngFor="let data of reportdata" >
+              <td>{{ data.cellName }}</td>
+              <td>{{ data.plan_Start_STC  | date: "yyyy/MM/dd"  }}</td>
+              <td>{{ data.po }}</td>
+              <td>{{ data.style_Name }}</td>
+              <td>{{ data.style_No}}</td>
+              <td>{{ data.article }}</td>
+              <td style="text-align: center">{{ data.seq }}</td>
+              <td style="text-align: center">{{ data.qty }}</td>
+              <td style="text-align: center">{{ data.readyQty }}</td>
+              <td style="text-align: center">{{ data.dispatchQty }}</td>
+              <td style="text-align: center">{{ data.balanceQty }}</td>
+              <td>{{ data.scanAt  | date: "yyyy/MM/dd HH:mm" }}</td>
+              <td>{{ data.scanDeliveryAt  | date: "yyyy/MM/dd HH:mm"  }}</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="reportdata?.length == 0">
+            <tr>
+              <td colspan="12" >No data!</td>
+            </tr>
+          </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

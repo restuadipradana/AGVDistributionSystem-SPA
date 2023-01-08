@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
       next => {
       },
       error => {
-        console.log("error: ", error)
+        console.log("error login: ", error.error)
         this.isWrong = true;
         this.spinner.hide();
       },

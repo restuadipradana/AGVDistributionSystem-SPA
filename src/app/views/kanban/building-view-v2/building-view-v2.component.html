@@ -1,0 +1,47 @@
+<div class="animated fadeIn">
+  <div class="row" *ngFor="let data1 of chunkedData">
+    <div class="col-md-2 col-sm-4" *ngFor="let data of data1">
+      <div class="card text-white bg-primary">
+        <div class="card-body"  (click)="showLine(data.buildingNo)">
+          <div class="h2 text-uppercase font-weight-bold text-center">{{data.buildingName}}</div>
+          <hr style="height:1px;border-width:0;color:gray;background-color:rgb(224, 229, 252)">
+          <!--
+          <div class="row h4">
+            <div class="col text-right">
+              Prepared
+            </div>
+            <div class="col">
+              {{data.prepared}}
+            </div>
+          </div> -->
+          <div class="row h5">
+            <div class="col-9 text-right">
+              Waiting to Process
+            </div>
+            <div class="col">
+              {{data.ready}}
+            </div>
+          </div>
+          <div class="row h5">
+            <div class="col-9 text-right">
+              In Process Now
+            </div>
+            <div class="col">
+              {{data.delivery}}
+            </div>
+          </div>
+          <div class="row h5">
+            <div class="col-9 text-right">
+              Finished Process
+            </div>
+            <div class="col">
+              {{data.finished}}
+            </div>
+          </div>
+          <div class="chart-wrapper mx-auto" style="height:20px;width:80px;">
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

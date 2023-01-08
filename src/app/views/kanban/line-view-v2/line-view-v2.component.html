@@ -1,0 +1,46 @@
+<div class="animated fadeIn">
+  <div class="row"  *ngFor="let data1 of chunkedData">
+    <div class="cell" *ngFor="let data of data1">
+      <div class="card text-white box">
+        <div class="card-body side">
+          <div class="h4 text-uppercase font-weight-bold text-center" >{{data.line_Name}}</div>
+          <div *ngIf="data.processStats != null; then thenBlockP1 else elseBlockP1"></div>
+          <ng-template #thenBlockP1>
+            <div class="card text-dark" [ngClass]="{'deliverstat': data.processStats.status == 'DISPATCH', 'readystat': data.processStats.status == 'READY'}" >
+              <div class="h5 text-center" *ngFor="let data3 of data.processStats.pOlist">{{data3.po}}</div>
+              <div class="h5 text-center">{{data.processStats.status}}</div>
+            </div>
+          </ng-template>
+          <ng-template #elseBlockP1>
+            <div class="card text-dark   nodatastat">
+              <div class="h5 text-center">IN WAREHOUSE</div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--second row
+  <div class="row">
+    <div class="cell">
+      <div class="card text-white box">
+        <div class="card-body side">
+          <div class="h4 text-uppercase font-weight-bold text-center" >CELL 8</div>
+          <div *ngIf="cell8prep?.pOlist.length != null; then thenBlockP8 else elseBlockP8"></div>
+            <ng-template #thenBlockP8>
+              <div class="card text-dark" [ngClass]="{'deliverstat': cell8prep?.status == 'DISPATCH', 'readystat': cell8prep?.status == 'READY'}" >
+                <div class="h5 text-center" *ngFor="let data of cell8prep?.pOlist">{{data.po}}</div>
+                <div class="h5 text-center">{{cell8prep?.status}} (PREP)</div>
+              </div>
+            </ng-template>
+            <ng-template #elseBlockP8>
+              <div class="card text-dark   nodatastat">
+                <div class="h5 text-center">IN WAREHOUSE</div>
+              </div>
+            </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>-->
+</div>

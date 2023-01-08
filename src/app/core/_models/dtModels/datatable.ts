@@ -12,4 +12,13 @@ export class ResponseDT {
   recordsTotal: number;
 }
 
-//experimental
+export interface SearchCriteriaInquiryRepDT {
+  isPageLoad: boolean;
+  line: string;
+  po: string;
+  startDate: Date;
+  endDate: Date;
+  status: string;
+  building: string;
+  seq: string;
+}
