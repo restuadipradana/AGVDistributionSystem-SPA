@@ -197,7 +197,7 @@ export class NavItem {
 
           const kanban = {
             name: '3.1. Building Kanban',
-            url: '/kanban',
+            url: '/kanban/building',
             class: "menu-margin",
           }
           navItemQuery.children.push(children51);
@@ -251,7 +251,7 @@ export class NavItem {
           };
           const kanban = {
             name: '3.2. Building Kanban V2',
-            url: '/kanban/v2',
+            url: '/kanban',
             class: "menu-margin",
           }
           navItemKanban.children.push(kanban);

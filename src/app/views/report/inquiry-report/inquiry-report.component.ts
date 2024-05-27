@@ -134,7 +134,7 @@ export class InquiryReportComponent implements OnInit {
           return {id: item, name: item}
         })
         this.cells = res.cells.map( item => {
-          return {id: item.line_ID, name: item.line_Name}
+          return {id: item.line_ID, name: item.line_ID + ' - ' + item.line_Name}
         })
       },
       (error) => {

@@ -13,7 +13,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
+        path: 'building',
         component: BuildingViewComponent,
         data: {
           title: 'Building Kanban'
@@ -27,7 +27,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'v2',
+        path: '',
         component: BuildingViewV2Component,
         data: {
           title: 'Building Kanban'
